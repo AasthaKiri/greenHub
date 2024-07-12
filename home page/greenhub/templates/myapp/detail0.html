@@ -1,0 +1,16 @@
+{% extends 'myapp/base.html' %}
+
+{#defining the body of the page #}
+{% block body_block %}
+<h1>Book List</h1>
+    <ul>
+            {# defining the title , price, and publisher of the book by usig the data passed in the view#}
+            <h3>Title:{{book.title}}</h3>
+            <h3>Price:{{book.price}}</h3>
+            <h3>Publisher:{{book.publisher}}</h3>
+
+    </ul>
+    {# URL defind through namedspacing   #}
+    <p><a href="{% url 'myapp:index' %}">Index page</a></p>
+{% endblock body_block %}
+

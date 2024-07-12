@@ -1,0 +1,21 @@
+<!-- myapp/templates/myapp/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index Page</title>
+</head>
+<body>
+    <h1>Book List</h1>
+    <ul>
+            {# defing the title, price and publisher of the book using the variable passed in view.py #}
+            <h3>Title:{{book.title}}</h3>
+            <h3>Price:{{book.price}}</h3>
+            <h3>Publisher:{{book.publisher}}</h3>
+
+    </ul>
+{#   url using namespacing#}
+    <p><a href="{% url 'myapp:index' %}">Index page</a></p>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{% extends 'myapp/base.html' %}
+{# define the title of page#}
+{% block title %}About Page{% endblock %}
+
+{#defingi the bbody og the page #}
+{% block body_block %}
+    <p>This is an eBook Website.</p>
+    {#  Defingin the hard coded link  #}
+    <p><a href="/myapp/">Go back to the main page (hardcoded link)</a></p>
+{#    defining the URL usinf name spacing #}
+    <p><a href="{% url 'myapp:index' %}">Go back to the main page (URL namespacing)</a></p>
+{% endblock body_block%}

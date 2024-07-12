@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'myapp/style.css' %}" />
+        <title>eBook Website - {% block title %}Welcome!{% endblock title%}</title>
+    </head>
+
+    <body>
+        <div>
+            {# Adding block for setting the appropiate heading in the page requiresd by the specific page#}
+            <h1>{% block myhdg %}{% endblock myhdg %}</h1>
+            {# This block is for the body content of the page#}
+            {% block body_block %}{% endblock body_block %}
+        </div>
+        <hr />
+        <div>
+            {#    this block is used to refer the links to be chanhed if required b class page    #}
+            {% block link %}
+
+            <ul>
+                <li class="hbar1"><a href="/myapp/about/">Find out about this site</a></li>
+                <li class="hbar1"><a href = "{% url 'myapp:index' %}">Click here to return to main page</a><br/></li>
+                <li class="hbar1"><a href = "{% url 'myapp:findbooks' %}">Find books page</a><br/></li>
+            </ul>
+            {% endblock link %}
+        </div>
+    </body>
+</html>

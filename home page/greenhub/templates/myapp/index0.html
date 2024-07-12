@@ -1,0 +1,29 @@
+{% extends 'myapp/base.html' %}
+{# using block to define the heading#}
+<h1>{% block myhdg %}Hello Aastha {% endblock %}</h1>
+
+
+{# using the block for defing the body of the page #}
+{% block body_block %}
+     {% if booklist %}
+        <h2>List of Books</h2>
+        <ol>
+            {% for book  in booklist %}
+            {#   using namespaving to define the urls for each book title#}
+                <a href="{% url 'myapp:detail' book.id %}">{{ book.title }}</a>
+                <br>
+            {% endfor %}
+        </ol>
+
+    {% else %}
+        <strong>This is Index page ... There are no available books!</strong>
+    {% endif %}
+{#  using hardcoding URL for About page #}
+    <p><a href="/myapp/about">About page</a></p>
+    <a href="{% url 'myapp:place_order' %}">Place Order</a>
+
+
+
+{% block link %}{% endblock link %}
+
+{% endblock %}

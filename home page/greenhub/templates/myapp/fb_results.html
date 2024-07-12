@@ -1,0 +1,18 @@
+{#{% extends 'myapp/base.html' %}#}
+{##}
+{#{% block body_block %}#}
+{#    <p>You have chosen{{ choice }}</p>#}
+{#{% endblock %}#}
+{% extends 'myapp/base.html' %}
+
+{% block body_block %}
+<h1>Feedback Results</h1>
+{% if choices %}
+    <p>selected option : </p>
+    {% for choice in choices %}
+        {{ choice }}
+    {% endfor %}
+
+
+{% endif %}
+{% endblock %}

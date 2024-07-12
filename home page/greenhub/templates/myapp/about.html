@@ -1,0 +1,25 @@
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Title</title>#}
+{#</head>#}
+{#<body>#}
+{#‘This is an eBook Website.’.#}
+{#</body>#}
+{#</html>#}
+<!-- myapp/templates/myapp/about.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Page</title>
+</head>
+<body>
+    <p>This is an eBook Website.</p>
+{#  URL defind usind the hardcoding #}
+    <p><a href="/myapp/">Go back to the main page (hardcoded link)</a></p>
+{#    URL defined through namespacing#}
+    <p><a href="{% url 'myapp:index' %}">Go back to the main page (URL namespacing)</a></p>
+</body>
+</html>
