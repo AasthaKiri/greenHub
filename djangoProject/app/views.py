@@ -7,9 +7,6 @@ from .models import Product
 def home(request):
     return render(request, 'home.html')
 
-
-
-
 def index(request):
     products = Product.objects.all()
 
