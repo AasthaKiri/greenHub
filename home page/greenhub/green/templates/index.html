@@ -1,0 +1,718 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>GreenHub - Discover, Learn, and Connect with Sustainable Innovations</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600&family=Roboto&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+
+
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top px-0">
+        <div class="container px-0">
+            <div class="topbar">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-md-8">
+                        <div class="topbar-info d-flex flex-wrap">
+                            <a href="#" class="text-light me-4"><i class="fas fa-envelope text-white me-2"></i>greenhub@gmail.com</a>
+                            <a href="#" class="text-light"><i class="fas fa-phone-alt text-white me-2"></i>+1(226)975-8949</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="topbar-icon d-flex align-items-center justify-content-end">
+                            <a href="#" class="btn-square text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="btn-square text-white me-2"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="btn-square text-white me-2"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="btn-square text-white me-2"><i class="fab fa-pinterest"></i></a>
+                            <a href="#" class="btn-square text-white me-0"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nav class="navbar navbar-light bg-light navbar-expand-xl">
+                <a href="index.html" class="navbar-brand ms-3">
+                    <h1 class="text-primary display-5">GreenHub</h1>
+                </a>
+                <button class="navbar-toggler py-2 px-3 me-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-light" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto">
+                        <a href="index.html" class="nav-item nav-link active">Home</a>
+                        <a href="index.html" class="nav-item nav-link">About</a>
+                        <a href="index.html" class="nav-item nav-link">Services</a>
+                        <a href="index.html" class="nav-item nav-link">Causes</a>
+                        <a href="index.html" class="nav-item nav-link">Events</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                            <div class="dropdown-menu m-0 bg-secondary rounded-0">
+                                <a href="index.html" class="dropdown-item">Blog</a>
+                                <a href="index.html" class="dropdown-item">Gallery</a>
+                                <a href="index.html" class="dropdown-item">Volunteers</a>
+                                <a href="index.html" class="dropdown-item">Donation</a>
+                                <a href="index.html" class="dropdown-item">404 Error</a>
+                            </div>
+                        </div>
+                        <a href="index.html" class="nav-item nav-link">Contact</a>
+                    </div>
+                    <div class="d-flex align-items-center flex-nowrap pt-xl-0" style="margin-left: 15px;">
+                        <a href="" class="btn-hover-bg btn btn-primary text-white py-2 px-4 me-3">Donate Now</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+<!-- Carousel Start -->
+<div class="container-fluid carousel-header vh-100 px-0">
+    <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-bs-target="#carouselId" data-bs-slide-to="0" class="active"></li>
+            <li data-bs-target="#carouselId" data-bs-slide-to="1"></li>
+            <li data-bs-target="#carouselId" data-bs-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+                <img src="{% static 'img/carousel-1.jpg' %}" class="img-fluid" alt="Community Cleanup">
+                <div class="carousel-caption">
+                    <div class="p-3" style="max-width: 900px;">
+                        <h4 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">Join the Movement</h4>
+                        <h1 class="display-1 text-capitalize text-white mb-4">Community Cleanups</h1>
+                        <p class="mb-5 fs-5">Be part of a community-driven effort to clean and preserve our local environment. Join us in our next cleanup event and make a tangible impact.</p>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <a class="btn-hover-bg btn btn-primary text-white py-3 px-5" href="#">Join With Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'img/carousel-2.jpg' %}" class="img-fluid" alt="Fundraising Event">
+                <div class="carousel-caption">
+                    <div class="p-3" style="max-width: 900px;">
+                        <h4 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">Support the Cause</h4>
+                        <h1 class="display-1 text-capitalize text-white mb-4">Fundraising Events</h1>
+                        <p class="mb-5 fs-5">Contribute to environmental causes by participating in our fundraising events. Together, we can raise the necessary funds to support sustainable initiatives.</p>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <a class="btn-hover-bg btn btn-primary text-white py-3 px-5" href="#">Get Involved</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'img/carousel-3.jpg' %}" class="img-fluid" alt="Sustainable Products">
+                <div class="carousel-caption">
+                    <div class="p-3" style="max-width: 900px;">
+                        <h4 class="text-white text-uppercase fw-bold mb-4" style="letter-spacing: 3px;">Shop Sustainably</h4>
+                        <h1 class="display-1 text-capitalize text-white mb-4">Eco-Friendly Products</h1>
+                        <p class="mb-5 fs-5">Discover our curated list of products made from recycled materials. Choose eco-friendly options and support a greener planet.</p>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <a class="btn-hover-bg btn btn-primary text-white py-3 px-5" href="#">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselId" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+<!-- Carousel End -->
+
+
+<!-- About Start -->
+        <div class="container-fluid about  py-5">
+            <div class="container py-5">
+                <div class="row g-5">
+                    <div class="col-xl-5">
+                        <div class="h-100">
+                            <img src="{% static 'img/about-1.jpg' %}" class="img-fluid w-100 h-100" alt="Image">
+                        </div>
+                    </div>
+                    <div class="col-xl-7">
+                        <h5 class="text-uppercase text-primary">About Us</h5>
+                        <h1 class="mb-4">Our main goal is to protect environment</h1>
+                        <!-- <p class="fs-5 mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has -->
+                        <div class="tab-class bg-secondary p-4">
+                            <ul class="nav d-flex mb-2">
+                                <li class="nav-item mb-3">
+                                    <a class="d-flex py-2 text-center bg-white active" data-bs-toggle="pill" href="#tab-1">
+                                        <span class="text-dark" style="width: 150px;">About</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item mb-3">
+                                    <a class="d-flex py-2 mx-3 text-center bg-white" data-bs-toggle="pill" href="#tab-2">
+                                        <span class="text-dark" style="width: 150px;">Mission</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item mb-3">
+                                    <a class="d-flex py-2 text-center bg-white" data-bs-toggle="pill" href="#tab-3">
+                                        <span class="text-dark" style="width: 150px;">Vision</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="tab-1" class="tab-pane fade show p-0 active">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="d-flex">
+                                                <div class="text-start my-auto">
+                                                    <!-- <h5 class="text-uppercase mb-3">Lorem Ipsum 1</h5> -->
+                                                    <p class="mb-4">Fosters and participate eco-friendly activities in local communities. We empower individuals to join and manage green initiatives like community cleanups, environmental fundraisers, and other sustainable activities. GreenHub also offers a curated selection of products made from recycled materials. Together, we aim to create a greener, more sustainable future for all.
+                                                    </p>
+                                                    <div class="d-flex align-items-center justify-content-start">
+                                                        <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Read More</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="tab-2" class="tab-pane fade show p-0">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="d-flex">
+                                                <div class="text-start my-auto">
+                                                    <!-- <h5 class="text-uppercase mb-3">Lorem Ipsum 2</h5> -->
+                                                    <p class="mb-4">Our mission is to inspire and enable individuals and communities to actively participate in sustainable practices and environmental stewardship. By providing a platform for organizing and promoting green initiatives, we aim to make eco-friendly actions accessible and impactful. We believe that small, collective efforts can lead to significant positive changes for our planet.
+                                                    </p>
+                                                    <div class="d-flex align-items-center justify-content-start">
+                                                        <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Read More</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="tab-3" class="tab-pane fade show p-0">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="d-flex">
+                                                <div class="text-start my-auto">
+                                                    <!-- <h5 class="text-uppercase mb-3">Vision</h5> -->
+                                                    <p class="mb-4">Our vision is to become the leading platform for community-driven environmental action, fostering a global network of eco-conscious individuals and organizations. We envision a world where sustainable practices are the norm, and everyone is engaged in protecting and preserving the environment for future generations.
+                                                    </p>
+                                                    <div class="d-flex align-items-center justify-content-start">
+                                                        <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Read More</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!-- About End -->
+
+
+<!-- Services Start -->
+<div class="container-fluid service py-5 bg-light">
+    <div class="container py-5">
+        <div class="text-center mx-auto pb-5" style="max-width: 800px;">
+            <h5 class="text-uppercase text-primary">What we do</h5>
+            <h1 class="mb-0">Our Efforts to Protect the Environment</h1>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="service-item">
+                    <img src="{% static 'img/service-1.jpg' %}" class="img-fluid w-100" alt="Fundraising Events">
+                    <div class="service-link">
+                        <a href="#" class="h4 mb-0">Fundraising Events</a>
+                    </div>
+                </div>
+                <p class="my-4">Find and participate in local fundraising events that support various environmental causes and initiatives.</p>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="service-item">
+                    <img src="{% static 'img/service-2.jpg' %}" class="img-fluid w-100" alt="Community Cleanups">
+                    <div class="service-link">
+                        <a href="#" class="h4 mb-0">Community Cleanups</a>
+                    </div>
+                </div>
+                <p class="my-4">Join nearby community cleanup events to help keep your local environment clean and sustainable.</p>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="service-item">
+                    <img src="{% static 'img/service-3.jpg' %}" class="img-fluid w-100" alt="Eco-Friendly Workshops">
+                    <div class="service-link">
+                        <a href="#" class="h4 mb-0">Eco-Friendly Workshops</a>
+                    </div>
+                </div>
+                <p class="my-4">Attend workshops and training sessions on sustainable practices and eco-friendly living.</p>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="service-item">
+                    <img src="{% static 'img/service-4.jpg' %}" class="img-fluid w-100" alt="Conservation Projects">
+                    <div class="service-link">
+                        <a href="#" class="h4 mb-0">Conservation Projects</a>
+                    </div>
+                </div>
+                <p class="my-4">Get involved in local conservation projects to protect and preserve natural habitats and wildlife.</p>
+            </div>
+            <div class="col-12">
+                <div class="d-flex align-items-center justify-content-center">
+                    <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Read More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Services End -->
+
+<!-- Counter Section -->
+<div class="container-fluid counter py-5" style="background: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, 0.4)), url({% static 'img/volunteers-bg.jpg' %}) center center; background-size: cover;">
+    <div class="container py-5">
+        <div class="text-center mx-auto pb-5" style="max-width: 800px;">
+            <h5 class="text-uppercase text-primary">Achievements</h5>
+            <p class="text-white mb-0">Discover the impact made by participating in local environmental initiatives through GreenHub.</p>
+        </div>
+        <div class="row g-4 d-flex">
+            <div class="col-md-6 col-lg-6 col-xl-3 d-flex">
+                <div class="counter-item text-center border p-5 flex-fill">
+                    <i class="fas fa-tree fa-4x text-white"></i>
+                    <h3 class="text-white my-4">Trees Planted</h3>
+                    <div class="counter-counting">
+                        <span class="text-primary fs-2 fw-bold" data-toggle="counter-up">3600</span>
+                        <span class="h1 fw-bold text-primary">+</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-3 d-flex">
+                <div class="counter-item text-center border p-5 flex-fill">
+                    <i class="fas fa-hand-holding-usd fa-4x text-white"></i>
+                    <h3 class="text-white my-4">Funds &nbsp;Raised</h3>
+                    <div class="counter-counting">
+                        <span class="text-primary fs-2 fw-bold" data-toggle="counter-up">513</span>
+                        <span class="h1 fw-bold text-primary">K</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-3 d-flex">
+                <div class="counter-item text-center border p-5 flex-fill">
+                    <i class="fas fa-users fa-4x text-white"></i>
+                    <h3 class="text-white my-4">Volunteers Engaged</h3>
+                    <div class="counter-counting">
+                        <span class="text-primary fs-2 fw-bold" data-toggle="counter-up">713</span>
+                        <span class="h1 fw-bold text-primary">+</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-3 d-flex">
+                <div class="counter-item text-center border p-5 flex-fill">
+                    <i class="fas fa-calendar-alt fa-4x text-white"></i>
+                    <h3 class="text-white my-4">Events &nbsp;Listed</h3>
+                    <div class="counter-counting">
+                        <span class="text-primary fs-2 fw-bold" data-toggle="counter-up">487</span>
+                        <span class="h1 fw-bold text-primary">+</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="d-flex align-items-center justify-content-center">
+                    <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Join Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Counter End -->
+
+<!-- Events Start -->
+        <div class="container-fluid event py-5">
+            <div class="container py-5">
+                <div class="text-center mx-auto mb-5" style="max-width: 800px;">
+                    <h5 class="text-uppercase text-primary">Upcoming Events</h5>
+                    <h1 class="mb-0">Join us today to create a greener tomorrow!</h1>
+                </div>
+                <div class="event-carousel owl-carousel">
+                    <div class="event-item">
+                        <img src="{% static 'img/events-1.jpg' %}" class="img-fluid w-100" alt="Image">
+                        <div class="event-content p-4">
+                            <div class="d-flex justify-content-between mb-4">
+                                <span class="text-body"><i class="fas fa-map-marker-alt me-2"></i>Central Park, New York</span>
+                                <span class="text-body"><i class="fas fa-calendar-alt me-2"></i>22 July, 2024</span>
+                            </div>
+                            <h4 class="mb-4">Community Cleanup Day</h4>
+                            <p class="mb-4">Join us in cleaning up Central Park and making it a greener place for everyone. Together, we can make a big difference!</p>
+                            <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Read More</a>
+                        </div>
+                    </div>
+                    <div class="event-item">
+                        <img src="{% static 'img/events-2.jpg' %}" class="img-fluid w-100" alt="Image">
+                        <div class="event-content p-4">
+                            <div class="d-flex justify-content-between mb-4">
+                                <span class="text-body"><i class="fas fa-map-marker-alt me-2"></i>Green Square, Sydney</span>
+                                <span class="text-body"><i class="fas fa-calendar-alt me-2"></i>5 August, 2024</span>
+                            </div>
+                            <h4 class="mb-4">Eco-Friendly Product Fair</h4>
+                            <p class="mb-4">Explore and purchase products made from recycled materials. Support sustainable businesses and contribute to a greener planet.</p>
+                            <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Read More</a>
+                        </div>
+                    </div>
+                    <div class="event-item">
+                        <img src="{% static 'img/events-3.jpg' %}" class="img-fluid w-100" alt="Image">
+                        <div class="event-content p-4">
+                            <div class="d-flex justify-content-between mb-4">
+                                <span class="text-body"><i class="fas fa-map-marker-alt me-2"></i>Eco Hall, San Francisco</span>
+                                <span class="text-body"><i class="fas fa-calendar-alt me-2"></i>19 August, 2024</span>
+                            </div>
+                            <h4 class="mb-4">Fundraising for Green Projects</h4>
+                            <p class="mb-4">Help us raise funds for upcoming green projects aimed at reducing waste and promoting sustainable practices in our communities.</p>
+                            <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Read More</a>
+                        </div>
+                    </div>
+                    <div class="event-item">
+                        <img src="{% static 'img/events-4.jpg' %}" class="img-fluid w-100" alt="Image">
+                        <div class="event-content p-4">
+                            <div class="d-flex justify-content-between mb-4">
+                                <span class="text-body"><i class="fas fa-map-marker-alt me-2"></i>City Park, Toronto</span>
+                                <span class="text-body"><i class="fas fa-calendar-alt me-2"></i>12 September, 2024</span>
+                            </div>
+                            <h4 class="mb-4">Tree Planting Initiative</h4>
+                            <p class="mb-4">Participate in our tree planting event to help reforest urban areas and promote a healthy environment for future generations.</p>
+                            <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!-- Events End -->
+
+<!-- Blog Start -->
+        <div class="container-fluid blog py-5 mb-5">
+            <div class="container py-5">
+                <div class="text-center mx-auto pb-5" style="max-width: 800px;">
+                    <h5 class="text-uppercase text-primary">Latest News</h5>
+                    <h1 class="mb-0">Stay updated with the latest in environmental action and eco-friendly initiatives!</h1>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-6 col-xl-3">
+                        <div class="blog-item">
+                            <div class="blog-img">
+                                <img src="{% static 'img/blog-1.jpg' %}" class="img-fluid w-100" alt="">
+                                <div class="blog-info">
+                                    <span><i class="fa fa-clock"></i> July 01, 2024</span>
+                                    <div class="d-flex">
+                                        <span class="me-3">15 <i class="fa fa-heart"></i></span>
+                                        <a href="#" class="text-white">5 <i class="fa fa-comment"></i></a>
+                                    </div>
+                                </div>
+                                <div class="search-icon">
+                                    <a href="{% static 'img/blog-1.jpg' %}" data-lightbox="Blog-1" class="my-auto"><i class="fas fa-search-plus btn-primary text-white p-3"></i></a>
+                                </div>
+                            </div>
+                            <div class="text-dark border p-4">
+                                <h4 class="mb-4">Community Cleanup Success</h4>
+                                <p class="mb-4">Our recent community cleanup event in Central Park was a huge success! Thanks to all the volunteers who made it happen.</p>
+                                <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xl-3">
+                        <div class="blog-item">
+                            <div class="blog-img">
+                                <img src="{% static 'img/blog-2.jpg' %}" class="img-fluid w-100" alt="">
+                                <div class="blog-info">
+                                    <span><i class="fa fa-clock"></i> June 15, 2024</span>
+                                    <div class="d-flex">
+                                        <span class="me-3">20 <i class="fa fa-heart"></i></span>
+                                        <a href="#" class="text-white">8 <i class="fa fa-comment"></i></a>
+                                    </div>
+                                </div>
+                                <div class="search-icon">
+                                    <a href="{% static 'img/blog-2.jpg' %}" data-lightbox="Blog-2" class="my-auto"><i class="fas fa-search-plus btn-primary text-white p-3"></i></a>
+                                </div>
+                            </div>
+                            <div class="text-dark border p-4">
+                                <h4 class="mb-4">Eco-Friendly Product Launch</h4>
+                                <p class="mb-4">We're excited to announce the launch of our new line of products made from recycled plastic. Check them out in our store.</p>
+                                <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xl-3">
+                        <div class="blog-item">
+                            <div class="blog-img">
+                                <img src="{% static 'img/blog-3.jpg' %}" class="img-fluid w-100" alt="">
+                                <div class="blog-info">
+                                    <span><i class="fa fa-clock"></i> June 01, 2024</span>
+                                    <div class="d-flex">
+                                        <span class="me-3">25 <i class="fa fa-heart"></i></span>
+                                        <a href="#" class="text-white">12 <i class="fa fa-comment"></i></a>
+                                    </div>
+                                </div>
+                                <div class="search-icon">
+                                    <a href="{% static 'img/blog-3.jpg' %}" data-lightbox="Blog-3" class="my-auto"><i class="fas fa-search-plus btn-primary text-white p-3"></i></a>
+                                </div>
+                            </div>
+                            <div class="text-dark border p-4">
+                                <h4 class="mb-4">Fundraising Event Highlights</h4>
+                                <p class="mb-4">Our latest fundraising event exceeded all expectations! See how the funds will be used for upcoming green projects.</p>
+                                <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xl-3">
+                        <div class="blog-item">
+                            <div class="blog-img">
+                                <img src="{% static 'img/blog-4.jpg' %}" class="img-fluid w-100" alt="">
+                                <div class="blog-info">
+                                    <span><i class="fa fa-clock"></i> May 20, 2024</span>
+                                    <div class="d-flex">
+                                        <span class="me-3">18 <i class="fa fa-heart"></i></span>
+                                        <a href="#" class="text-white">10 <i class="fa fa-comment"></i></a>
+                                    </div>
+                                </div>
+                                <div class="search-icon">
+                                    <a href="{% static 'img/blog-4.jpg' %}" data-lightbox="Blog-4" class="my-auto"><i class="fas fa-search-plus btn-primary text-white p-3"></i></a>
+                                </div>
+                            </div>
+                            <div class="text-dark border p-4">
+                                <h4 class="mb-4">Tree Planting Initiative</h4>
+                                <p class="mb-4">Our tree planting initiative in City Park was a great success. Thank you to everyone who came out and contributed!</p>
+                                <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!-- Blog End -->
+<!-- Volunteers Start -->
+<div class="container-fluid volunteer py-5 mt-5">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-5">
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="volunteer-img">
+                            <img src="{% static 'img/volunteers-1.jpg' %}" class="img-fluid w-100" alt="Image">
+                            <div class="volunteer-title">
+                                <h5 class="mb-2 text-white">Michel Brown</h5>
+                                <p class="mb-0 text-white">Community Organizer</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="volunteer-img">
+                            <img src="{% static 'img/volunteers-3.jpg' %}" class="img-fluid w-100" alt="Image">
+                            <div class="volunteer-title">
+                                <h5 class="mb-2 text-white">Sarah Johnson</h5>
+                                <p class="mb-0 text-white">Event Coordinator</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="volunteer-img">
+                            <img src="{% static 'img/volunteers-2.jpg' %}" class="img-fluid w-100" alt="Image">
+                            <div class="volunteer-title">
+                                <h5 class="mb-2 text-white">James Lee</h5>
+                                <p class="mb-0 text-white">Sustainability Advocate</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="volunteer-img">
+                            <img src="{% static 'img/volunteers-4.jpg' %}" class="img-fluid w-100" alt="Image">
+                            <div class="volunteer-title">
+                                <h5 class="mb-2 text-white">Emily Davis</h5>
+                                <p class="mb-0 text-white">Green Ambassador</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <h5 class="text-uppercase text-primary">Want to Make a Difference?</h5>
+                <h1 class="mb-4">Join hands with us for a greener and more sustainable future.</h1>
+                <p class="mb-4">At GreenHub, we connect passionate volunteers with meaningful environmental initiatives. Whether it's organizing cleanups, raising funds for green projects, or spreading awareness about sustainability, there’s a place for everyone.</p>
+                <p class="text-dark"><i class=" fa fa-check text-primary me-2"></i> Friendly and supportive community.</p>
+                <p class="text-dark"><i class=" fa fa-check text-primary me-2"></i> Free training and resources for all volunteers.</p>
+                <p class="text-dark"><i class=" fa fa-check text-primary me-2"></i> Opportunity to make a tangible impact on the environment.</p>
+                <p class="text-dark"><i class=" fa fa-check text-primary me-2"></i> Flexible commitment with no stringent requirements.</p>
+                <p class="text-dark mb-5"><i class=" fa fa-check text-primary me-2"></i> Completely free to join. We value your time, not your money.</p>
+                <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Join Us</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Volunteers End -->
+
+ <!-- Footer Start -->
+<div class="container-fluid footer bg-dark text-body py-5">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="footer-item">
+                    <h4 class="mb-4 text-white">Newsletter</h4>
+                    <p class="mb-4">Stay updated with the latest news on environmental events, sustainability tips, and GreenHub initiatives. Join our community for a greener tomorrow.</p>
+                    <div class="position-relative mx-auto">
+                        <input class="form-control border-0 bg-secondary w-100 py-3 ps-4 pe-5" type="text" placeholder="Enter your email">
+                        <button type="button" class="btn-hover-bg btn btn-primary position-absolute top-0 end-0 py-2 mt-2 me-2">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="footer-item d-flex flex-column">
+                    <h4 class="mb-4 text-white">Our Services</h4>
+                    <a href=""><i class="fas fa-angle-right me-2"></i> Event Listings</a>
+                    <a href=""><i class="fas fa-angle-right me-2"></i> Volunteer Opportunities</a>
+                    <a href=""><i class="fas fa-angle-right me-2"></i> Sustainability Resources</a>
+                    <a href=""><i class="fas fa-angle-right me-2"></i> Green Products</a>
+                    <a href=""><i class="fas fa-angle-right me-2"></i> Community Forums</a>
+                    <a href=""><i class="fas fa-angle-right me-2"></i> Educational Workshops</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="footer-item d-flex flex-column">
+                    <h4 class="mb-4 text-white">Top Volunteers</h4>
+                    <a href=""><i class="fas fa-angle-right me-2"></i> Karen Dawson</a>
+                    <a href=""><i class="fas fa-angle-right me-2"></i> Jack Simmons</a>
+                    <a href=""><i class="fas fa-angle-right me-2"></i> Michael Linden</a>
+                    <a href=""><i class="fas fa-angle-right me-2"></i> Simon Green</a>
+                    <a href=""><i class="fas fa-angle-right me-2"></i> Natalie Channing</a>
+                    <a href=""><i class="fas fa-angle-right me-2"></i> Caroline Gerwig</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="footer-item">
+                    <h4 class="mb-4 text-white">Our Gallery</h4>
+                    <div class="row g-2">
+                        <div class="col-4">
+                            <div class="footer-gallery">
+                                <img src="{% static 'img/gallery-footer-1.jpg' %}" class="img-fluid w-100" alt="">
+                                <div class="footer-search-icon">
+                                    <a href="{% static 'img/gallery-footer-1.jpg' %}" data-lightbox="footerGallery-1" class="my-auto"><i class="fas fa-search-plus text-white"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="footer-gallery">
+                                <img src="{% static 'img/gallery-footer-2.jpg' %}" class="img-fluid w-100" alt="">
+                                <div class="footer-search-icon">
+                                    <a href="{% static 'img/gallery-footer-2.jpg' %}" data-lightbox="footerGallery-2" class="my-auto"><i class="fas fa-search-plus text-white"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="footer-gallery">
+                                <img src="{% static 'img/gallery-footer-3.jpg' %}" class="img-fluid w-100" alt="">
+                                <div class="footer-search-icon">
+                                    <a href="{% static 'img/gallery-footer-3.jpg' %}" data-lightbox="footerGallery-3" class="my-auto"><i class="fas fa-search-plus text-white"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="footer-gallery">
+                                <img src="{% static 'img/gallery-footer-4.jpg' %}" class="img-fluid w-100" alt="">
+                                <div class="footer-search-icon">
+                                    <a href="{% static 'img/gallery-footer-4.jpg' %}" data-lightbox="footerGallery-4" class="my-auto"><i class="fas fa-search-plus text-white"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="footer-gallery">
+                                <img src="{% static 'img/gallery-footer-5.jpg' %}" class="img-fluid w-100" alt="">
+                                <div class="footer-search-icon">
+                                    <a href="{% static 'img/gallery-footer-5.jpg' %}" data-lightbox="footerGallery-5" class="my-auto"><i class="fas fa-search-plus text-white"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="footer-gallery">
+                                <img src="{% static 'img/gallery-footer-6.jpg' %}" class="img-fluid w-100" alt="">
+                                <div class="footer-search-icon">
+                                    <a href="{% static 'img/gallery-footer-6.jpg' %}" data-lightbox="footerGallery-6" class="my-auto"><i class="fas fa-search-plus text-white"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+
+
+<!-- Copyright Start -->
+<div class="container-fluid copyright py-4">
+    <div class="container">
+        <div class="row g-4 align-items-center">
+            <div class="col-md-4 text-center text-md-start mb-md-0">
+                <span class="text-body"><a href="#"><i class="fas fa-copyright text-light me-2"></i>GreenHub</a>, All rights reserved.</span>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="d-flex align-items-center justify-content-center">
+                    <a href="#" class="btn-hover-color btn-square text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="btn-hover-color btn-square text-white me-2"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="btn-hover-color btn-square text-white me-2"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="btn-hover-color btn-square text-white me-2"><i class="fab fa-pinterest"></i></a>
+                    <a href="#" class="btn-hover-color btn-square text-white me-0"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Copyright End -->
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i class="fa fa-arrow-up"></i></a>   
+
+        
+        <!-- JavaScript Libraries -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+        <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+        <script src="{% static 'lib/counterup/counterup.min.js' %}"></script>
+        <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'lib/lightbox/js/lightbox.min.js' %}"></script>
+        
+
+        <!-- Template Javascript -->
+        <script src="{% static 'js/main.js' %}"></script>
+
+    </body>
+
+</html>
