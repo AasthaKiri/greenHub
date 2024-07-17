@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <!-- Design by foolishdeveloper.com -->
     <title>GreenHub Login Page</title>
- 
+
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
@@ -119,7 +120,7 @@
     </div>
     <form method="post">
         <h3>GreenHub Login </h3>
-        {% csrf_token %} 
+        {% csrf_token %}
         <label for="username">Username</label>
         <input type="text" placeholder="Enter Username" id="username" name="username">
 
@@ -132,7 +133,10 @@
           <div class="go"><i class="fab fa-google"></i>  Google</div>
           <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
         </div> -->
-        <a href="{% url 'signup' %}" >Create a account</a>
+        <a href="{% url 'signup' %}" >Don't have an account yet?</a>
+        <br>
+        <a href="{% url 'password_reset_request' %}" >Don't remember your password?</a>
     </form>
 </body>
 </html>
+
