@@ -155,7 +155,6 @@
 </div>
 <!-- Carousel End -->
 
-
 <!-- About Start -->
         <div class="container-fluid about  py-5">
             <div class="container py-5">
@@ -244,7 +243,6 @@
         </div>
 <!-- About End -->
 
-
 <!-- Services Start -->
 <div class="container-fluid service py-5 bg-light">
     <div class="container py-5">
@@ -307,46 +305,18 @@
             <p class="text-white mb-0">Discover the impact made by participating in local environmental initiatives through GreenHub.</p>
         </div>
         <div class="row g-4 d-flex">
+            {% for achievement in achievements %}
             <div class="col-md-6 col-lg-6 col-xl-3 d-flex">
                 <div class="counter-item text-center border p-5 flex-fill">
-                    <i class="fas fa-tree fa-4x text-white"></i>
-                    <h3 class="text-white my-4">Trees Planted</h3>
+                    <i class="{{ achievement.icon_class }} fa-4x text-white"></i>
+                    <h3 class="text-white my-4">{{ achievement.title }}</h3>
                     <div class="counter-counting">
-                        <span class="text-primary fs-2 fw-bold" data-toggle="counter-up">3600</span>
+                        <span class="text-primary fs-2 fw-bold" data-toggle="counter-up">{{ achievement.count }}</span>
                         <span class="h1 fw-bold text-primary">+</span>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-6 col-xl-3 d-flex">
-                <div class="counter-item text-center border p-5 flex-fill">
-                    <i class="fas fa-hand-holding-usd fa-4x text-white"></i>
-                    <h3 class="text-white my-4">Funds &nbsp;Raised</h3>
-                    <div class="counter-counting">
-                        <span class="text-primary fs-2 fw-bold" data-toggle="counter-up">513</span>
-                        <span class="h1 fw-bold text-primary">K</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-6 col-xl-3 d-flex">
-                <div class="counter-item text-center border p-5 flex-fill">
-                    <i class="fas fa-users fa-4x text-white"></i>
-                    <h3 class="text-white my-4">Volunteers Engaged</h3>
-                    <div class="counter-counting">
-                        <span class="text-primary fs-2 fw-bold" data-toggle="counter-up">713</span>
-                        <span class="h1 fw-bold text-primary">+</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-6 col-xl-3 d-flex">
-                <div class="counter-item text-center border p-5 flex-fill">
-                    <i class="fas fa-calendar-alt fa-4x text-white"></i>
-                    <h3 class="text-white my-4">Events &nbsp;Listed</h3>
-                    <div class="counter-counting">
-                        <span class="text-primary fs-2 fw-bold" data-toggle="counter-up">487</span>
-                        <span class="h1 fw-bold text-primary">+</span>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
             <div class="col-12">
                 <div class="d-flex align-items-center justify-content-center">
                     <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Join Us</a>
@@ -358,208 +328,86 @@
 <!-- Counter End -->
 
 <!-- Events Start -->
-        <div class="container-fluid event py-5">
-            <div class="container py-5">
-                <div class="text-center mx-auto mb-5" style="max-width: 800px;">
-                    <h5 class="text-uppercase text-primary">Upcoming Events</h5>
-                    <h1 class="mb-0">Join us today to create a greener tomorrow!</h1>
-                </div>
-                <div class="event-carousel owl-carousel">
-                    <div class="event-item">
-                        <img src="{% static 'img/events-1.jpg' %}" class="img-fluid w-100" alt="Image">
-                        <div class="event-content p-4">
-                            <div class="d-flex justify-content-between mb-4">
-                                <span class="text-body"><i class="fas fa-map-marker-alt me-2"></i>Central Park, New York</span>
-                                <span class="text-body"><i class="fas fa-calendar-alt me-2"></i>22 July, 2024</span>
-                            </div>
-                            <h4 class="mb-4">Community Cleanup Day</h4>
-                            <p class="mb-4">Join us in cleaning up Central Park and making it a greener place for everyone. Together, we can make a big difference!</p>
-                            <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Read More</a>
-                        </div>
+<div class="container-fluid event py-5">
+    <div class="container py-5">
+        <div class="text-center mx-auto mb-5" style="max-width: 800px;">
+            <h5 class="text-uppercase text-primary">Upcoming Events</h5>
+            <h1 class="mb-0">Join us today to create a greener tomorrow!</h1>
+        </div>
+        <div class="event-carousel owl-carousel">
+            {% for event in events %}
+            <div class="event-item">
+                <img src="{{ event.image.url }}" class="img-fluid w-100" alt="Image">
+                <div class="event-content p-4">
+                    <div class="d-flex justify-content-between mb-4">
+                        <span class="text-body"><i class="fas fa-map-marker-alt me-2"></i>{{ event.location }}</span>
+                        <span class="text-body"><i class="fas fa-calendar-alt me-2"></i>{{ event.date }}</span>
                     </div>
-                    <div class="event-item">
-                        <img src="{% static 'img/events-2.jpg' %}" class="img-fluid w-100" alt="Image">
-                        <div class="event-content p-4">
-                            <div class="d-flex justify-content-between mb-4">
-                                <span class="text-body"><i class="fas fa-map-marker-alt me-2"></i>Green Square, Sydney</span>
-                                <span class="text-body"><i class="fas fa-calendar-alt me-2"></i>5 August, 2024</span>
-                            </div>
-                            <h4 class="mb-4">Eco-Friendly Product Fair</h4>
-                            <p class="mb-4">Explore and purchase products made from recycled materials. Support sustainable businesses and contribute to a greener planet.</p>
-                            <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Read More</a>
-                        </div>
-                    </div>
-                    <div class="event-item">
-                        <img src="{% static 'img/events-3.jpg' %}" class="img-fluid w-100" alt="Image">
-                        <div class="event-content p-4">
-                            <div class="d-flex justify-content-between mb-4">
-                                <span class="text-body"><i class="fas fa-map-marker-alt me-2"></i>Eco Hall, San Francisco</span>
-                                <span class="text-body"><i class="fas fa-calendar-alt me-2"></i>19 August, 2024</span>
-                            </div>
-                            <h4 class="mb-4">Fundraising for Green Projects</h4>
-                            <p class="mb-4">Help us raise funds for upcoming green projects aimed at reducing waste and promoting sustainable practices in our communities.</p>
-                            <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Read More</a>
-                        </div>
-                    </div>
-                    <div class="event-item">
-                        <img src="{% static 'img/events-4.jpg' %}" class="img-fluid w-100" alt="Image">
-                        <div class="event-content p-4">
-                            <div class="d-flex justify-content-between mb-4">
-                                <span class="text-body"><i class="fas fa-map-marker-alt me-2"></i>City Park, Toronto</span>
-                                <span class="text-body"><i class="fas fa-calendar-alt me-2"></i>12 September, 2024</span>
-                            </div>
-                            <h4 class="mb-4">Tree Planting Initiative</h4>
-                            <p class="mb-4">Participate in our tree planting event to help reforest urban areas and promote a healthy environment for future generations.</p>
-                            <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Read More</a>
-                        </div>
-                    </div>
+                    <h4 class="mb-4">{{ event.title }}</h4>
+                    <p class="mb-4">{{ event.description }}</p>
+                    <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Read More</a>
                 </div>
             </div>
+            {% endfor %}
         </div>
+    </div>
+</div>
 <!-- Events End -->
 
 <!-- Blog Start -->
-        <div class="container-fluid blog py-5 mb-5">
-            <div class="container py-5">
-                <div class="text-center mx-auto pb-5" style="max-width: 800px;">
-                    <h5 class="text-uppercase text-primary">Latest News</h5>
-                    <h1 class="mb-0">Stay updated with the latest in environmental action and eco-friendly initiatives!</h1>
-                </div>
-                <div class="row g-4">
-                    <div class="col-lg-6 col-xl-3">
-                        <div class="blog-item">
-                            <div class="blog-img">
-                                <img src="{% static 'img/blog-1.jpg' %}" class="img-fluid w-100" alt="">
-                                <div class="blog-info">
-                                    <span><i class="fa fa-clock"></i> July 01, 2024</span>
-                                    <div class="d-flex">
-                                        <span class="me-3">15 <i class="fa fa-heart"></i></span>
-                                        <a href="#" class="text-white">5 <i class="fa fa-comment"></i></a>
-                                    </div>
-                                </div>
-                                <div class="search-icon">
-                                    <a href="{% static 'img/blog-1.jpg' %}" data-lightbox="Blog-1" class="my-auto"><i class="fas fa-search-plus btn-primary text-white p-3"></i></a>
-                                </div>
+<div class="container-fluid blog py-5 mb-5">
+    <div class="container py-5">
+        <div class="text-center mx-auto pb-5" style="max-width: 800px;">
+            <h5 class="text-uppercase text-primary">Latest News</h5>
+            <h1 class="mb-0">Stay updated with the latest in environmental action and eco-friendly initiatives!</h1>
+        </div>
+        <div class="row g-4">
+            {% for post in blog_posts %}
+            <div class="col-lg-6 col-xl-3">
+                <div class="blog-item">
+                    <div class="blog-img">
+                        <img src="{{ post.image.url }}" class="img-fluid w-100" alt="">
+                        <div class="blog-info">
+                            <span><i class="fa fa-clock"></i> {{ post.date }}</span>
+                            <div class="d-flex">
+                                <span class="me-3">{{ post.likes }} <i class="fa fa-heart"></i></span>
+                                <a href="#" class="text-white">{{ post.comments }} <i class="fa fa-comment"></i></a>
                             </div>
-                            <div class="text-dark border p-4">
-                                <h4 class="mb-4">Community Cleanup Success</h4>
-                                <p class="mb-4">Our recent community cleanup event in Central Park was a huge success! Thanks to all the volunteers who made it happen.</p>
-                                <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Read More</a>
-                            </div>
+                        </div>
+                        <div class="search-icon">
+                            <a href="{{ post.image.url }}" data-lightbox="Blog-{{ forloop.counter }}" class="my-auto"><i class="fas fa-search-plus btn-primary text-white p-3"></i></a>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-xl-3">
-                        <div class="blog-item">
-                            <div class="blog-img">
-                                <img src="{% static 'img/blog-2.jpg' %}" class="img-fluid w-100" alt="">
-                                <div class="blog-info">
-                                    <span><i class="fa fa-clock"></i> June 15, 2024</span>
-                                    <div class="d-flex">
-                                        <span class="me-3">20 <i class="fa fa-heart"></i></span>
-                                        <a href="#" class="text-white">8 <i class="fa fa-comment"></i></a>
-                                    </div>
-                                </div>
-                                <div class="search-icon">
-                                    <a href="{% static 'img/blog-2.jpg' %}" data-lightbox="Blog-2" class="my-auto"><i class="fas fa-search-plus btn-primary text-white p-3"></i></a>
-                                </div>
-                            </div>
-                            <div class="text-dark border p-4">
-                                <h4 class="mb-4">Eco-Friendly Product Launch</h4>
-                                <p class="mb-4">We're excited to announce the launch of our new line of products made from recycled plastic. Check them out in our store.</p>
-                                <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-xl-3">
-                        <div class="blog-item">
-                            <div class="blog-img">
-                                <img src="{% static 'img/blog-3.jpg' %}" class="img-fluid w-100" alt="">
-                                <div class="blog-info">
-                                    <span><i class="fa fa-clock"></i> June 01, 2024</span>
-                                    <div class="d-flex">
-                                        <span class="me-3">25 <i class="fa fa-heart"></i></span>
-                                        <a href="#" class="text-white">12 <i class="fa fa-comment"></i></a>
-                                    </div>
-                                </div>
-                                <div class="search-icon">
-                                    <a href="{% static 'img/blog-3.jpg' %}" data-lightbox="Blog-3" class="my-auto"><i class="fas fa-search-plus btn-primary text-white p-3"></i></a>
-                                </div>
-                            </div>
-                            <div class="text-dark border p-4">
-                                <h4 class="mb-4">Fundraising Event Highlights</h4>
-                                <p class="mb-4">Our latest fundraising event exceeded all expectations! See how the funds will be used for upcoming green projects.</p>
-                                <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-xl-3">
-                        <div class="blog-item">
-                            <div class="blog-img">
-                                <img src="{% static 'img/blog-4.jpg' %}" class="img-fluid w-100" alt="">
-                                <div class="blog-info">
-                                    <span><i class="fa fa-clock"></i> May 20, 2024</span>
-                                    <div class="d-flex">
-                                        <span class="me-3">18 <i class="fa fa-heart"></i></span>
-                                        <a href="#" class="text-white">10 <i class="fa fa-comment"></i></a>
-                                    </div>
-                                </div>
-                                <div class="search-icon">
-                                    <a href="{% static 'img/blog-4.jpg' %}" data-lightbox="Blog-4" class="my-auto"><i class="fas fa-search-plus btn-primary text-white p-3"></i></a>
-                                </div>
-                            </div>
-                            <div class="text-dark border p-4">
-                                <h4 class="mb-4">Tree Planting Initiative</h4>
-                                <p class="mb-4">Our tree planting initiative in City Park was a great success. Thank you to everyone who came out and contributed!</p>
-                                <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Read More</a>
-                            </div>
-                        </div>
+                    <div class="text-dark border p-4">
+                        <h4 class="mb-4">{{ post.title }}</h4>
+                        <p class="mb-4">{{ post.short_description }}</p>
+                        <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="{{ post.detail_url }}">Read More</a>
                     </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
+    </div>
+</div>
 <!-- Blog End -->
+
 <!-- Volunteers Start -->
 <div class="container-fluid volunteer py-5 mt-5">
     <div class="container py-5">
         <div class="row g-5">
             <div class="col-lg-5">
                 <div class="row g-4">
+                    {% for volunteer in volunteers %}
                     <div class="col-lg-6">
                         <div class="volunteer-img">
-                            <img src="{% static 'img/volunteers-1.jpg' %}" class="img-fluid w-100" alt="Image">
+                            <img src="{{ volunteer.image.url }}" class="img-fluid w-100" alt="{{ volunteer.name }}">
                             <div class="volunteer-title">
-                                <h5 class="mb-2 text-white">Michel Brown</h5>
-                                <p class="mb-0 text-white">Community Organizer</p>
+                                <h5 class="mb-2 text-white">{{ volunteer.name }}</h5>
+                                <p class="mb-0 text-white">{{ volunteer.role }}</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="volunteer-img">
-                            <img src="{% static 'img/volunteers-3.jpg' %}" class="img-fluid w-100" alt="Image">
-                            <div class="volunteer-title">
-                                <h5 class="mb-2 text-white">Sarah Johnson</h5>
-                                <p class="mb-0 text-white">Event Coordinator</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="volunteer-img">
-                            <img src="{% static 'img/volunteers-2.jpg' %}" class="img-fluid w-100" alt="Image">
-                            <div class="volunteer-title">
-                                <h5 class="mb-2 text-white">James Lee</h5>
-                                <p class="mb-0 text-white">Sustainability Advocate</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="volunteer-img">
-                            <img src="{% static 'img/volunteers-4.jpg' %}" class="img-fluid w-100" alt="Image">
-                            <div class="volunteer-title">
-                                <h5 class="mb-2 text-white">Emily Davis</h5>
-                                <p class="mb-0 text-white">Green Ambassador</p>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
             <div class="col-lg-7">
@@ -571,14 +419,14 @@
                 <p class="text-dark"><i class=" fa fa-check text-primary me-2"></i> Opportunity to make a tangible impact on the environment.</p>
                 <p class="text-dark"><i class=" fa fa-check text-primary me-2"></i> Flexible commitment with no stringent requirements.</p>
                 <p class="text-dark mb-5"><i class=" fa fa-check text-primary me-2"></i> Completely free to join. We value your time, not your money.</p>
-                <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Join Us</a>
+                <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="{% url 'add_volunteer' %}">Join Us</a>
             </div>
         </div>
     </div>
 </div>
 <!-- Volunteers End -->
 
- <!-- Footer Start -->
+<!-- Footer Start -->
 <div class="container-fluid footer bg-dark text-body py-5">
     <div class="container py-5">
         <div class="row g-5">
@@ -587,8 +435,11 @@
                     <h4 class="mb-4 text-white">Newsletter</h4>
                     <p class="mb-4">Stay updated with the latest news on environmental events, sustainability tips, and GreenHub initiatives. Join our community for a greener tomorrow.</p>
                     <div class="position-relative mx-auto">
-                        <input class="form-control border-0 bg-secondary w-100 py-3 ps-4 pe-5" type="text" placeholder="Enter your email">
-                        <button type="button" class="btn-hover-bg btn btn-primary position-absolute top-0 end-0 py-2 mt-2 me-2">Sign Up</button>
+                        <form id="newsletterForm">
+                            {% csrf_token %}
+                            <input class="form-control border-0 bg-secondary w-100 py-3 ps-4 pe-5" type="email" name="email" placeholder="Enter your email" required>
+                            <button type="submit" class="btn-hover-bg btn btn-primary position-absolute top-0 end-0 py-2 mt-2 me-2">Sign Up</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -674,6 +525,28 @@
 </div>
 <!-- Footer End -->
 
+<!-- Include jQuery if not already included -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#newsletterForm').on('submit', function(event) {
+            event.preventDefault();
+            var $form = $(this);
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'newsletter_signup' %}",
+                data: $form.serialize(),
+                success: function(response) {
+                    alert(response.message);
+                    $form.trigger('reset');
+                },
+                error: function(response) {
+                    alert(response.responseJSON.message);
+                }
+            });
+        });
+    });
+</script>
 
 <!-- Copyright Start -->
 <div class="container-fluid copyright py-4">

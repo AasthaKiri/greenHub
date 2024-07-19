@@ -1,3 +1,8 @@
 from django.contrib import admin
+from .models import Achievement, BlogPost, Event, Volunteer, NewsletterSubscription
 
-# Register your models here.
+admin.site.register(Achievement)
+admin.site.register(BlogPost)
+admin.site.register(Event)
+admin.site.register(Volunteer)
+admin.site.register(NewsletterSubscription)
