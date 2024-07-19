@@ -3,6 +3,9 @@
 
 {% load static %}
 
+{% block search %} "{% url 'fav_product_search' %}" {% endblock search %}
+{% block sort %} "{% url 'fav_product_sort' %}" {% endblock sort %}
+
 
 <!-- Fruits Shop Start-->
 {% block favBody %}

@@ -5,6 +5,16 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 def home(request):
     return render(request, 'home.html')
+def contact(request):
+    return render(request, 'contact.html')
+def about(request):
+    return render(request, 'about.html')
+def login(request):
+    return render(request, 'login.html')
+def company(request):
+    return render(request, 'company.html')
+
+
 
 def index(request):
     products = Product.objects.all()
@@ -18,9 +28,9 @@ def shop(request):
     sort_option = request.GET.get('sort', 'name_asc')
 
     if sort_option == 'name_asc':
-        products = Product.objects.order_by('category__name')  # Ascending order by category name
+        products = Product.objects.order_by('name')  # Ascending order by category name
     elif sort_option == 'name_desc':
-        products = Product.objects.order_by('-category__name')  # Descending order by category name
+        products = Product.objects.order_by('-name')  # Descending order by category name
     else:
         products = Product.objects.all()  # Default to displaying all products
 
@@ -37,6 +47,44 @@ def shop(request):
     return render(request, 'shop.html', {'products': products, 'categories': categories})
 
 
+
+
+
+def fav_product_sort(request):
+    query = request.GET.get('search', '')
+    sort_option = request.GET.get('sort', 'name_asc')
+
+    if query:
+        favorite_products = Favorite.objects.filter(product__name__icontains=query)
+    else:
+        favorite_products = Favorite.objects.all()
+
+    if sort_option == 'name_asc':
+        favorite_products = favorite_products.order_by('product__name')
+    elif sort_option == 'name_desc':
+        favorite_products = favorite_products.order_by('-product__name')
+
+    paginator = Paginator(favorite_products, 9)  # Show 9 products per page
+    page = request.GET.get('page')
+    try:
+        favorite_products = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        favorite_products = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range, deliver last page of results.
+        favorite_products = paginator.page(paginator.num_pages)
+
+    context = {
+        'products': [favorite.product for favorite in favorite_products],
+        'query': query,
+        'sort': sort_option,
+        'paginator': paginator,
+        'page_obj': favorite_products,
+    }
+    return render(request, 'fav.html', context)
+
+
 def product_search(request):
     query = request.GET.get('search', '')
     if query:
@@ -50,7 +98,18 @@ def product_search(request):
     }
     return render(request, 'shop.html', context)
 
+def fav_product_search(request):
+    query = request.GET.get('search', '')
+    if query:
+        favorite_products = Favorite.objects.filter(product__name__icontains=query)
+    else:
+        favorite_products = Favorite.objects.all()
 
+    context = {
+        'products': [favorite.product for favorite in favorite_products],
+        'query': query,
+    }
+    return render(request, 'fav.html', context)
 
 def add_to_favorites(request, product_id):
     product = get_object_or_404(Product, id=product_id)
