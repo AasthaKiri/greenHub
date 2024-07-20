@@ -1,0 +1,6 @@
+{% load i18n %}
+<!-- templates/account/email/email_confirmation_message.html -->
+
+{% load account %}{% user_display user as user_display %}
+{% blocktrans %}Please confirm your email address by clicking on the link below:{% endblocktrans %}
+<a href="{{ activate_url }}">{{ activate_url }}</a>
