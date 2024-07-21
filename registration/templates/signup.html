@@ -1,115 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>GreenHub Signup Page</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
-
-    <!--Stylesheet-->
-    <style media="screen">
-        *,
-        *:before,
-        *:after {
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-        }
+    <style>
         body {
-            background-color: ghostwhite; /* Light green background */
-        }
-        .background {
-            width: 430px;
-            height: 520px;
-            position: absolute;
-            transform: translate(-50%, -50%);
-            left: 50%;
-            top: 50%;
-        }
-        form {
-            height: 650px;
-            width: 450px;
-            background-color: rgba(255, 255, 255, 0.13);
-            position: absolute;
-            transform: translate(-50%, -50%);
-            top: 50%;
-            left: 50%;
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
-            padding: 50px 35px;
-        }
-        form * {
+            background-color: ghostwhite;
             font-family: 'Poppins', sans-serif;
-            color: #333; /* Dark text color */
-            letter-spacing: 0.5px;
-            outline: none;
+        }
+        .container {
+            max-width: 450px;
+            margin-top: 50px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h3 {
+            color: #4CAF50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            color: #4CAF50;
+        }
+        .btn-primary {
+            background-color: #4CAF50;
             border: none;
         }
-        form h3 {
-            font-size: 32px;
-            font-weight: 500;
-            line-height: 42px;
-            text-align: center;
-            color: #4CAF50; /* Green header text */
-        }
-        label {
-            display: block;
-            margin-top: 30px;
-            font-size: 16px;
-            font-weight: 500;
-            color: #4CAF50; /* Green label text */
-        }
-        input {
-            display: block;
-            height: 40px;
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.07);
-            border-radius: 3px;
-            padding: 0 10px;
-            margin-top: 2px;
-            font-size: 14px;
-            font-weight: 300;
-            color: #333; /* Dark text color */
-        }
-        ::placeholder {
-            color: #e5e5e5;
-        }
-        button {
-            margin-top: 14px;
-            width: 100%;
-            background-color: #4CAF50; /* Green submit button */
-            color: white;
-            padding: 15px 0;
-            font-size: 18px;
-            font-weight: 600;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .social {
-            margin-top: 30px;
-            display: flex;
-        }
-        .social div {
-            width: 150px;
-            border-radius: 3px;
-            padding: 5px 10px 10px 5px;
-            background-color: rgba(255, 255, 255, 0.27);
-            color: #333; /* Dark text color */
-            text-align: center;
-        }
-        .social div:hover {
-            background-color: rgba(255, 255, 255, 0.47);
-        }
-        .social .fb {
-            margin-left: 25px;
-        }
-        .social i {
-            margin-right: 4px;
-        }
-        .messages {
-            margin-bottom: 20px;
+        .btn-primary:hover {
+            background-color: #45a049;
         }
         .messages ul {
             list-style-type: none;
@@ -127,42 +49,44 @@
             border-left: 6px solid #4CAF50;
             color: #4CAF50;
         }
+        a {
+            color: #4CAF50;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
-    <div class="background">
-        <div class="shape"></div>
-        <div class="shape"></div>
-    </div>
-    <form action="" method="post">
-        {% csrf_token %}
+    <div class="container">
         <h3>GreenHub Signup Here</h3>
-
-        <div class="messages">
-            {% if messages %}
-                <ul>
-                    {% for message in messages %}
-                        <li class="{{ message.tags }}">{{ message }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        </div>
-
-        <label for="username">Username</label>
-        <input type="text" placeholder="Username" name="username" id="username" required>
-
-        <label for="email">Email</label>
-        <input type="email" placeholder="Email or Phone" name="email" id="email" required>
-
-        <label for="password1">Password</label>
-        <input type="password" placeholder="Password" id="password1" name="password1" required>
-
-        <label for="password2">Confirm Password</label>
-        <input type="password" placeholder="Confirm Password" id="password2" name="password2" required>
-        <button type="submit">Signup</button>
-
-        <a href="{% url 'login' %}">I have already an account</a>
-    </form>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <label for="password1">Password</label>
+                <input type="password" class="form-control" id="password1" name="password1" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+                <label for="password2">Confirm Password</label>
+                <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm Password" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Signup</button>
+            <p class="text-center mt-3">
+                <a href="{% url 'login' %}">I already have an account</a>
+            </p>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
 
