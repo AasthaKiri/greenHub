@@ -1,0 +1,50 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %}Add Volunteer{% endblock %}
+
+{% block content %}
+<!-- Header Start -->
+<div class="container-fluid bg-breadcrumb">
+    <div class="container text-center py-5" style="max-width: 900px;">
+        <h3 class="text-white display-3 mb-4">Our Volunteers</h3>
+        <p class="fs-5 text-white mb-4">Help today because tomorrow you may be the one who needs more helping!</p>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Pages</a></li>
+            <li class="breadcrumb-item active text-white">Add Volunteer</li>
+        </ol>
+    </div>
+</div>
+<!-- Header End -->
+
+<!-- Form Section Start -->
+<div class="container py-5">
+    <h2 class="mb-4">Add a New Volunteer</h2>
+    <form method="post" enctype="multipart/form-data" class="border p-4 rounded bg-light">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="id_name" class="form-label">Name</label>
+            {{ form.name }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_role" class="form-label">Role</label>
+            {{ form.role }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_image" class="form-label">Image</label>
+            {{ form.image }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_bio" class="form-label">Bio</label>
+            {{ form.bio }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Volunteer</button>
+    </form>
+</div>
+<!-- Form Section End -->
+{% endblock %}
