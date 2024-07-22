@@ -1,0 +1,39 @@
+/* Default background color, text color, and font size */
+body {
+    background-color: #f0f0f0; /* light gray background */
+    color: #333; /* dark text color */
+    font-size: 16px;
+}
+
+/* Styles for <h1> tags */
+h1 {
+    font-size: 2em;
+    color: #444; /* slightly lighter text color */
+    font-style: italic;
+    position: relative;
+}
+
+/* Class definition for .hbar1 */
+.hbar1 {
+    display: inline;
+    margin: 15px;
+}
+
+/* Optional additional styles */
+h2 {
+    color: #555;
+    font-size: 1.5em;
+}
+
+p {
+    margin: 10px 0;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

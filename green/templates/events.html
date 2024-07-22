@@ -1,44 +1,117 @@
 {% extends 'index.html' %}
 {% load static %}
-{% block title %}Add Volunteer{% endblock title%}
+{% block title %}Add Volunteer{% endblock title %}
 
 {% block body %}
-<!-- Header Start -->
-        <div class="container-fluid bg-breadcrumb">
-            <div class="container text-center py-5" style="max-width: 900px;">
-                <h3 class="text-white display-3 mb-4">Upcoming Events</h3>
-                <p class="fs-5 text-white mb-4">Help today because tomorrow you may be the one who needs more helping!</p>
+    <!-- Header Start -->
+    <div class="container-fluid bg-breadcrumb">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            <h3 class="text-white display-3 mb-4">Upcoming Events</h3>
+            <p class="fs-5 text-white mb-4">Help today because tomorrow you may be the one who needs more helping!</p>
 
-            </div>
         </div>
-        <!-- Header End -->
+    </div>
+    <!-- Header End -->
 
-        <!-- Events Start -->
-        <div class="container-fluid event py-5">
-            <div class="container py-5">
-                <div class="text-center mx-auto mb-5" style="max-width: 800px;">
-                    <h5 class="text-uppercase text-primary">Upcoming Events</h5>
-                    <h1 class="mb-0">Help today because tomorrow you may be the one who needs more helping!</h1>
-                </div>
-                <div class="event-carousel owl-carousel">
-                    {% for event in events %}
-                    <div class="event-item">
-                        <img src="{{ event.image.url }}" class="img-fluid w-100" alt="Image">
-                        <div class="event-content p-4">
-                            <div class="d-flex justify-content-between mb-4">
-                                <span class="text-body"><i class="fas fa-map-marker-alt me-2"></i>{{ event.location }}</span>
-                                <span class="text-body"><i class="fas fa-calendar-alt me-2"></i>{{ event.date }}</span>
+    <!-- Events Start -->
+    {#    <div class="container-fluid event py-5">#}
+    {#        <div class="container py-5">#}
+    {#            <div class="text-center mx-auto mb-5" style="max-width: 800px;">#}
+    {#                <h5 class="text-uppercase text-primary">Upcoming Events</h5>#}
+    {#                <h1 class="mb-0">Help today because tomorrow you may be the one who needs more helping!</h1>#}
+    {#            </div>#}
+    {#            <div class="event-carousel owl-carousel">#}
+    {#                {% for event in events %}#}
+    {#                    <div class="event-item">#}
+    {#                        <img src="{{ event.image.url }}" class="img-fluid w-100" alt="Image">#}
+    {#                        <div class="event-content p-4">#}
+    {#                            <div class="d-flex justify-content-between mb-4">#}
+    {#                                <span class="text-body"><i#}
+    {#                                        class="fas fa-map-marker-alt me-2"></i>{{ event.location }}</span>#}
+    {#                                <span class="text-body"><i class="fas fa-calendar-alt me-2"></i>{{ event.date }}</span>#}
+    {#                            </div>#}
+    {#                            <h4 class="mb-4">{{ event.title }}</h4>#}
+    {#                            <p class="mb-4">{{ event.description }}</p>#}
+    {#                            <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Read More</a>#}
+    {#                        </div>#}
+    {#                    </div>#}
+    {#                {% endfor %}#}
+    {##}
+    {##}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </div>#}
+    <!-- Events End -->
+
+    <div class="container-fluid blog py-5">
+        <div class="container py-5">
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-9">
+                    <div class="row g-4">
+                        <!-- Product Listing Section -->
+                        {% for event in events %}
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                                <div class="event-item">
+                                    <img src="{{ event.image.url }}" class="img-fluid w-100" alt="Image">
+                                    <div class="event-content p-4">
+                                        <div class="d-flex justify-content-between mb-4">
+                                            <span class="text-body"><i
+                                                    class="fas fa-map-marker-alt me-2"></i>{{ event.location }}</span>
+                                            <span class="text-body"><i
+                                                    class="fas fa-calendar-alt me-2"></i>{{ event.date }}</span>
+                                        </div>
+                                        <h4 class="mb-4">{{ event.title }}</h4>
+                                        <p class="mb-4">{{ event.description }}</p>
+                                        <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Read
+                                            More</a>
+                                    </div>
+                                </div>
                             </div>
-                            <h4 class="mb-4">{{ event.title }}</h4>
-                            <p class="mb-4">{{ event.description }}</p>
-                            <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Read More</a>
-                        </div>
+                        {% endfor %}
                     </div>
-                {% endfor %}
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center">
+                            {% if events.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ events.previous_page_number }}"
+                                       aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li class="page-item disabled">
+                                    <span class="page-link">&laquo;</span>
+                                </li>
+                            {% endif %}
 
+                            {% for i in events.paginator.page_range %}
+                                {% if events.number == i %}
+                                    <li class="page-item active"><span class="page-link">{{ i }}</span></li>
+                                {% else %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                                {% endif %}
+                            {% endfor %}
 
+                            {% if events.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ events.next_page_number }}" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li class="page-item disabled">
+                                    <span class="page-link">&raquo;</span>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
                 </div>
+
             </div>
+
         </div>
-        <!-- Events End -->
-{% endblock body%}
+
+
+    </div>
+
+{% endblock body %}

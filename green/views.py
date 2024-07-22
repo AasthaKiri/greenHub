@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.models import User
+from django.contrib.auth import login
 from django.views.decorators.http import require_POST
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Product,Category,Favorite
-from .models import Event, Volunteer, Achievement, BlogPost
+# from .models import Product, Category, Favorite
+from .models import Event, Volunteer, Achievement, BlogPost,Product, Category, Favorite
 from .forms import VolunteerForm, NewsletterSubscriptionForm
 from django.http import JsonResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -26,8 +28,18 @@ def home(request):
 
 def events(request):
     events_list = Event.objects.all().order_by('date')
+    event_paginator = Paginator(events_list, 9)  # Show 9 events per page
+    event_page = request.GET.get('page')
+
+    try:
+        events_p = event_paginator.page(event_page)
+    except PageNotAnInteger:
+        events_p = event_paginator.page(1)
+    except EmptyPage:
+        events_p = event_paginator.page(event_paginator.num_pages)
+
     context = {
-        'events': events_list,
+        'events': events_p,
     }
     return render(request, 'events.html', context)
 
@@ -52,6 +64,7 @@ def newsletter_signup(request):
             return JsonResponse({'message': 'Invalid email address.'}, status=400)
     return JsonResponse({'message': 'Invalid request.'}, status=400)
 
+
 def add_volunteer(request):
     if request.method == 'POST':
         form = VolunteerForm(request.POST, request.FILES)
@@ -63,48 +76,50 @@ def add_volunteer(request):
     return render(request, 'add_volunteer.html', {'form': form})
 
 
-
 def shop(request):
     categories = Category.objects.all()  # Fetch all categories
     selected_category_id = request.GET.get('category', None)
     sort_option = request.GET.get('sort', 'name_asc')
+    query = request.GET.get('search', '')
 
+    # Filter products by category if a category is selected
     if selected_category_id:
         selected_category = get_object_or_404(Category, id=selected_category_id)
         products = Product.objects.filter(category=selected_category)
     else:
         products = Product.objects.all()  # Fetch all products if no category is selected
 
+    # Further filter products by search query if provided
+    if query:
+        products = products.filter(name__icontains=query)
+
+    # Sort products based on the selected sorting option
     if sort_option == 'name_asc':
-        products = Product.objects.order_by('name')  # Ascending order by category name
+        products = products.order_by('name')  # Ascending order by product name
     elif sort_option == 'name_desc':
-        products = Product.objects.order_by('-name')  # Descending order by category name
-    else:
-        products = Product.objects.all()  # Default to displaying all products
+        products = products.order_by('-name')  # Descending order by product name
 
     paginator = Paginator(products, 9)  # Show 9 products per page
     page = request.GET.get('page')
     try:
         products = paginator.page(page)
     except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
         products = paginator.page(1)
     except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
         products = paginator.page(paginator.num_pages)
 
     favorite_products = Favorite.objects.all()
 
-    # return render(request, 'shop.html', {'products': products, 'categories': categories})
-    return render(request, 'shop.html', {
+    context = {
         'products': products,
         'categories': categories,
         'selected_category_id': selected_category_id,
         'sort_option': sort_option,
+        'query': query,
         'fav_products': [favorite.product for favorite in favorite_products]
+    }
 
-    })
-
+    return render(request, 'shop.html', context)
 
 
 
@@ -156,6 +171,7 @@ def product_search(request):
     }
     return render(request, 'shop.html', context)
 
+
 def fav_product_search(request):
     query = request.GET.get('search', '')
     if query:
@@ -169,22 +185,92 @@ def fav_product_search(request):
     }
     return render(request, 'fav.html', context)
 
+
 def add_to_favorites(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     if not Favorite.objects.filter(product=product).exists():
         Favorite.objects.create(product=product)
     return redirect('shop')  # Assuming 'shop' is the name of your product listing page
 
+
+# def view_favorites(request):
+#     favorites = Favorite.objects.all()
+#     categories = Category.objects.all()  # Fetch all categories
+#     selected_category_id = request.GET.get('category', None)
+#
+#     query = request.GET.get('search', '')
+#
+#     if selected_category_id:
+#         selected_category = get_object_or_404(Category, id=selected_category_id)
+#         products = Product.objects.filter(category=selected_category)
+#     else:
+#         products = Product.objects.all()  # Fetch all products if no category is selected
+#
+#     if query:
+#         favorite_products = Favorite.objects.filter(product__name__icontains=query)
+#     else:
+#         favorite_products = Favorite.objects.all()
+#
+#     favorite_products = [favorite.product for favorite in favorites]
+#
+#     return render(request, 'fav.html', {'fav': favorite_products, 'categories': categories, 'query': query,
+#                                         })
 def view_favorites(request):
-    favorites = Favorite.objects.all()
     categories = Category.objects.all()  # Fetch all categories
+    selected_category_id = request.GET.get('category', None)
+    query = request.GET.get('search', '')
 
-    favorite_products = [favorite.product for favorite in favorites]
+    # Get all favorite products
+    favorite_products = Favorite.objects.all()
 
-    return render(request, 'fav.html', {'fav': favorite_products,'categories':categories})
+    # Filter favorite products by category if a category is selected
+    if selected_category_id:
+        selected_category = get_object_or_404(Category, id=selected_category_id)
+        favorite_products = favorite_products.filter(product__category=selected_category)
+
+    # Filter favorite products by search query if provided
+    if query:
+        favorite_products = favorite_products.filter(product__name__icontains=query)
+
+    # Extract the products from the favorite products queryset
+    favorite_products = [favorite.product for favorite in favorite_products]
+
+    context = {
+        'fav': favorite_products,
+        'categories': categories,
+        'selected_category_id': selected_category_id,
+        'query': query,
+    }
+
+    return render(request, 'fav.html', context)
+
 
 def del_from_faves(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     Favorite.objects.filter(product=product).delete()
     return redirect('view_favorites')
 
+
+
+# def register(request):
+#     if request.method == 'POST':
+#         form = UserRegistrationForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             user = User.objects.create_user(
+#                 username=form.cleaned_data['username'],
+#                 email=form.cleaned_data['email'],
+#                 password=form.cleaned_data['password']
+#             )
+#             user.save()
+#             profile = Profile.objects.create(
+#                 user=user,
+#                 bio=form.cleaned_data['bio'],
+#                 birth_date=form.cleaned_data['birth_date'],
+#                 profile_picture=form.cleaned_data['profile_picture']
+#             )
+#             profile.save()
+#             login(request, user)
+#             return redirect('home')
+#     else:
+#         form = UserRegistrationForm()
+#     return render(request, 'Registartionpagegit remo.html', {'form': form})
