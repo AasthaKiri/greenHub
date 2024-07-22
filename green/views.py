@@ -9,7 +9,6 @@ from django.http import JsonResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
-
 def home(request):
     events_list = Event.objects.all().order_by('date')
     volunteers = Volunteer.objects.all()[:4]  # Fetching some volunteers
@@ -23,6 +22,23 @@ def home(request):
         'blog_posts': blog_posts,
     }
     return render(request, 'index.html', context)
+
+
+def events(request):
+    events_list = Event.objects.all().order_by('date')
+    context = {
+        'events': events_list,
+    }
+    return render(request, 'events.html', context)
+
+
+def blog(request):
+    blog_posts = BlogPost.objects.all()
+
+    context = {
+        'blog_posts': blog_posts,
+    }
+    return render(request, 'blogs.html', context)
 
 
 @require_POST
@@ -45,6 +61,7 @@ def add_volunteer(request):
     else:
         form = VolunteerForm()
     return render(request, 'add_volunteer.html', {'form': form})
+
 
 
 def shop(request):

@@ -7,7 +7,10 @@ from green import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='index'),
+
     path('add-volunteer/', views.add_volunteer, name='add_volunteer'),
+    path('events/', views.events, name='events'),
+    path('blogs/', views.blog, name='blogs'),
     path('newsletter-signup/', views.newsletter_signup, name='newsletter_signup'),
     path('shop/', views.shop, name='shop'),
     path('search/', views.product_search, name='product_search'),

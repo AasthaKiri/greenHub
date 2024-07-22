@@ -332,11 +332,24 @@
                     <div class="p-4 border rounded">
                         <h4 class="mb-4">Categories</h4>
                         <ul class="list-unstyled">
+                            {#                            {% for category in categories %}#}
+                            {#                                <li>#}
+                            {#                                    <a href="#" class="d-flex justify-content-between align-items-center">#}
+                            {#                                        <span>{{ category.name }}</span>#}
+                            {#                                    </a>#}
+                            {#                                </li>#}
+                            {#                            {% endfor %}#}
                             {% for category in categories %}
                                 <li>
-                                    <a href="#" class="d-flex justify-content-between align-items-center">
-                                        <span>{{ category.name }}</span>
-                                    </a>
+                                    <div class="d-flex align-items-center justify-content-between category-name">
+                                        <div>
+{#                                            <i class="fas fa-apple-alt me-2"></i>#}
+                                            <a href="?category={{ category.id }}&sort={{ sort_option }}"
+                                               class="{% if category.id|stringformat:"s" == selected_category_id %}active{% endif %}">
+                                                {{ category.name }}
+                                            </a>
+                                        </div>
+                                    </div>
                                 </li>
                             {% endfor %}
                         </ul>
@@ -405,6 +418,7 @@
                             {% if products.has_previous %}
                                 <li class="page-item">
                                     <a class="page-link" href="?page=
+
                                             {{ products.previous_page_number }}{% if selected_category_id %}&category={{ selected_category_id }}{% endif %}{% if sort_option %}&sort={{ sort_option }}{% endif %}"
                                        aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
@@ -421,6 +435,7 @@
                                     <li class="page-item active"><span class="page-link">{{ i }}</span></li>
                                 {% else %}
                                     <li class="page-item"><a class="page-link" href="?page=
+
                                             {{ i }}{% if selected_category_id %}&category={{ selected_category_id }}{% endif %}{% if sort_option %}&sort={{ sort_option }}{% endif %}">{{ i }}</a>
                                     </li>
                                 {% endif %}
@@ -429,6 +444,7 @@
                             {% if products.has_next %}
                                 <li class="page-item">
                                     <a class="page-link" href="?page=
+
                                             {{ products.next_page_number }}{% if selected_category_id %}&category={{ selected_category_id }}{% endif %}{% if sort_option %}&sort={{ sort_option }}{% endif %}"
                                        aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>

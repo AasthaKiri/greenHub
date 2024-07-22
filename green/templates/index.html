@@ -260,43 +260,43 @@
     </div>
 </div>
 <!-- Events End -->
-
-<!-- Blog Start -->
-<div class="container-fluid blog py-5 mb-5">
-    <div class="container py-5">
-        <div class="text-center mx-auto pb-5" style="max-width: 800px;">
-            <h5 class="text-uppercase text-primary">Latest News</h5>
-            <h1 class="mb-0">Stay updated with the latest in environmental action and eco-friendly initiatives!</h1>
-        </div>
-        <div class="row g-4">
-            {% for post in blog_posts %}
-            <div class="col-lg-6 col-xl-3">
-                <div class="blog-item">
-                    <div class="blog-img">
-                        <img src="{{ post.image.url }}" class="img-fluid w-100" alt="">
-                        <div class="blog-info">
-                            <span><i class="fa fa-clock"></i> {{ post.date }}</span>
-                            <div class="d-flex">
-                                <span class="me-3">{{ post.likes }} <i class="fa fa-heart"></i></span>
-                                <a href="#" class="text-white">{{ post.comments }} <i class="fa fa-comment"></i></a>
-                            </div>
-                        </div>
-                        <div class="search-icon">
-                            <a href="{{ post.image.url }}" data-lightbox="Blog-{{ forloop.counter }}" class="my-auto"><i class="fas fa-search-plus btn-primary text-white p-3"></i></a>
-                        </div>
-                    </div>
-                    <div class="text-dark border p-4">
-                        <h4 class="mb-4">{{ post.title }}</h4>
-                        <p class="mb-4">{{ post.short_description }}</p>
-                        <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="{{ post.detail_url }}">Read More</a>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</div>
-<!-- Blog End -->
+{##}
+{#<!-- Blog Start -->#}
+{#<div class="container-fluid blog py-5 mb-5">#}
+{#    <div class="container py-5">#}
+{#        <div class="text-center mx-auto pb-5" style="max-width: 800px;">#}
+{#            <h5 class="text-uppercase text-primary">Latest News</h5>#}
+{#            <h1 class="mb-0">Stay updated with the latest in environmental action and eco-friendly initiatives!</h1>#}
+{#        </div>#}
+{#        <div class="row g-4">#}
+{#            {% for post in blog_posts %}#}
+{#            <div class="col-lg-6 col-xl-3">#}
+{#                <div class="blog-item">#}
+{#                    <div class="blog-img">#}
+{#                        <img src="{{ post.image.url }}" class="img-fluid w-100" alt="">#}
+{#                        <div class="blog-info">#}
+{#                            <span><i class="fa fa-clock"></i> {{ post.date }}</span>#}
+{#                            <div class="d-flex">#}
+{#                                <span class="me-3">{{ post.likes }} <i class="fa fa-heart"></i></span>#}
+{#                                <a href="#" class="text-white">{{ post.comments }} <i class="fa fa-comment"></i></a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="search-icon">#}
+{#                            <a href="{{ post.image.url }}" data-lightbox="Blog-{{ forloop.counter }}" class="my-auto"><i class="fas fa-search-plus btn-primary text-white p-3"></i></a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="text-dark border p-4">#}
+{#                        <h4 class="mb-4">{{ post.title }}</h4>#}
+{#                        <p class="mb-4">{{ post.short_description }}</p>#}
+{#                        <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="{{ post.detail_url }}">Read More</a>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            {% endfor %}#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
+{#<!-- Blog End -->#}
 
 <!-- Volunteers Start -->
 <div class="container-fluid volunteer py-5 mt-5">
