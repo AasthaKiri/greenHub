@@ -1,0 +1,169 @@
+<!-- myapp/templates/myapp/about_us.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Change Is Us</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1em 0;
+            text-align: center;
+        }
+        nav {
+            background-color: #444;
+            overflow: hidden;
+        }
+        nav a {
+            float: left;
+            display: block;
+            color: #fff;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            background-color: #555;
+        }
+        main {
+            padding: 20px;
+        }
+        section {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .section-bg {
+            background-size: cover;
+            background-position: center;
+            padding: 40px;
+            color: #333;
+        }
+        .section-bg::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 1;
+        }
+        .section-content {
+            position: relative;
+            z-index: 2;
+        }
+        .subscribe {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .subscribe button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .subscribe button:hover {
+            background-color: #555;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 10px 0;
+        }
+        footer {
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 40px;
+            border-top: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Change Is Us</h1>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#projects">Our Projects</a>
+        <a href="#subscribe">Subscribe</a>
+        <a href="contact.html">Contact Us</a>
+    </nav>
+    <main>
+        <section id="about">
+            <h2>About Us</h2>
+            <p>For years, the environment has slowly been decaying, slipping away from our grasp, little by little. A few noticed, some didn't. Now is the time for urgent review.</p>
+            <p>Global surface temperature has been measured since 1880 at a network of ground-based and ocean-based sites. Over the last century, the average surface temperature of the Earth has increased by about 1°C. The eleven warmest years this century have all occurred since 1980, with 2016 the warmest on record.</p>
+            <p>The coastal regions are getting warmer in summers and colder in winters, as the years pass by. The average temperature margin between summers and winters is increasing everywhere. Hundreds of people are getting sick due to the sudden weather change brought about by global warming.</p>
+            <p>The earth is slowly dying and we need to save it, now.</p>
+        </section>
+        <section id="projects">
+            <h2>Our Projects</h2>
+            <section class="section-bg" style="background-image: url('https://media.istockphoto.com/id/1179252601/photo/volunteer-man-collecting-trash-on-the-beach-ecology-concept.jpg?s=612x612&w=0&k=20&c=lTLA1bKOsRt8kIInpfNKgBZyVJWnlTXZ1Icn_erfDbk=');">
+                <div class="section-content">
+                    <h3>Beach Cleaning</h3>
+                    <p>We organize beach cleaning drives to remove plastic and other waste materials from beaches, helping to preserve marine life and maintain clean and beautiful coastal areas. Our beach cleaning activities focus on:</p>
+                    <ul>
+                        <li>Removing plastic waste, which is harmful to marine animals.</li>
+                        <li>Educating the public about the importance of keeping beaches clean.</li>
+                        <li>Working with local communities to create sustainable waste management solutions.</li>
+                        <li>Partnering with environmental organizations to amplify our efforts.</li>
+                    </ul>
+                </div>
+            </section>
+            <section class="section-bg" style="background-image: url('https://www.classy.org/wp-content/uploads/2023/03/blog_x-impressive-tree-planting-organizations-exceeding-expectations-1224x612.jpg');">
+                <div class="section-content">
+                    <h3>Forest Tree Plantation</h3>
+                    <p>We conduct tree plantation campaigns in deforested areas to restore natural habitats, increase green cover, and combat climate change by enhancing carbon sequestration. Our tree plantation efforts include:</p>
+                    <ul>
+                        <li>Identifying areas that need reforestation.</li>
+                        <li>Collaborating with local authorities to secure land and resources.</li>
+                        <li>Organizing community planting events to engage local residents.</li>
+                        <li>Ensuring the survival of planted trees through regular monitoring and maintenance.</li>
+                    </ul>
+                </div>
+            </section>
+            <section class="section-bg" style="background-image: url('https://thinktreemedia.in/blog/wp-content/uploads/2024/04/csr-2048x1365.jpeg');">
+                <div class="section-content">
+                    <h3>CRA Based Activities</h3>
+                    <p>We engage in various Corporate Social Responsibility (CSR) activities aimed at improving community health, education, and overall well-being, aligning with our mission to create a sustainable future. Our CSR activities focus on:</p>
+                    <ul>
+                        <li>Providing educational resources and support to underserved communities.</li>
+                        <li>Organizing health camps and awareness programs.</li>
+                        <li>Supporting local businesses through skill development programs.</li>
+                        <li>Promoting environmental awareness and sustainable practices.</li>
+                    </ul>
+                </div>
+            </section>
+        </section>
+        <div class="subscribe" id="subscribe">
+            <form method="POST" action=".">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </main>
+    <footer class="bg-light text-center text-lg-start mt-5">
+        <div class="text-center p-3" style="background-color: rgba(0, 128, 0, 0.1);">
+            © 2024 Your Organization. All rights reserved.
+            <a class="text-success" href="#">Privacy Policy</a>
+        </div>
+    </footer>
+</body>
+</html>
