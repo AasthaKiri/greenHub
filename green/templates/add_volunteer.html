@@ -6,8 +6,8 @@
 <!-- Header Start -->
 <div class="container-fluid bg-breadcrumb">
     <div class="container text-center py-5" style="max-width: 900px;">
-        <h3 class="text-white display-3 mb-4">Our Volunteers</h3>
-        <p class="fs-5 text-white mb-4">Help today because tomorrow you may be the one who needs more helping!</p>
+        <h3 class="text-white display-3 mb-4">Step Up and Volunteer</h3>
+        <p class="fs-5 text-white mb-4">Become a Volunteer Today: Sign Up to Support Our Mission and Make a Difference</p>
 
     </div>
 </div>
@@ -15,7 +15,7 @@
 
 <!-- Form Section Start -->
 <div class="container py-5">
-    <h2 class="mb-4">Add a New Volunteer</h2>
+    <h2 class="mb-4">Register for Volunteering</h2>
     <form method="post" enctype="multipart/form-data" class="border p-4 rounded bg-light">
         {% csrf_token %}
 
@@ -25,8 +25,13 @@
         </div>
 
         <div class="mb-3">
-            <label for="id_role" class="form-label">Role</label>
-            {{ form.role }}
+            <label for="id_role" class="form-label">Email</label>
+            {{ form.email }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_role" class="form-label">Phone</label>
+            {{ form.phone_number }}
         </div>
 
         <div class="mb-3">
@@ -35,12 +40,13 @@
         </div>
 
         <div class="mb-3">
-            <label for="id_bio" class="form-label">Bio</label>
-            {{ form.bio }}
+            <label for="id_bio" class="form-label">Reason</label>
+            {{ form.reason }}
         </div>
 
         <button type="submit" class="btn btn-primary">Add Volunteer</button>
     </form>
 </div>
+
 <!-- Form Section End -->
 {% endblock %}

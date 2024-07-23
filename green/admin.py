@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Achievement, BlogPost, Event, Volunteer, NewsletterSubscription,Customer,Category,Product,Favorite
+from .models import Achievement, BlogPost, Event, Volunteer, NewsletterSubscription,Customer,Category,Product,Favorite,Company
 
 admin.site.register(Achievement)
 admin.site.register(BlogPost)
@@ -10,3 +10,4 @@ admin.site.register(Customer)
 admin.site.register(Category)
 admin.site.register(Product)
 admin.site.register(Favorite)
+admin.site.register(Company)

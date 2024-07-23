@@ -18,7 +18,7 @@
                         <h1 class="display-1 text-capitalize text-white mb-4">Community Cleanups</h1>
                         <p class="mb-5 fs-5">Be part of a community-driven effort to clean and preserve our local environment. Join us in our next cleanup event and make a tangible impact.</p>
                         <div class="d-flex align-items-center justify-content-center">
-                            <a class="btn-hover-bg btn btn-primary text-white py-3 px-5" href="#">Join With Us</a>
+                           <a href="{% url 'add_volunteer' %}" class="btn-hover-bg btn btn-primary text-white py-3 px-5" >Join With Us</a>
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                         <h1 class="display-1 text-capitalize text-white mb-4">Fundraising Events</h1>
                         <p class="mb-5 fs-5">Contribute to environmental causes by participating in our fundraising events. Together, we can raise the necessary funds to support sustainable initiatives.</p>
                         <div class="d-flex align-items-center justify-content-center">
-                            <a class="btn-hover-bg btn btn-primary text-white py-3 px-5" href="#">Get Involved</a>
+                            <a href="{% url 'events' %}" class="btn-hover-bg btn btn-primary text-white py-3 px-5" >Get Involved</a>
                         </div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                         <h1 class="display-1 text-capitalize text-white mb-4">Eco-Friendly Products</h1>
                         <p class="mb-5 fs-5">Discover our curated list of products made from recycled materials. Choose eco-friendly options and support a greener planet.</p>
                         <div class="d-flex align-items-center justify-content-center">
-                            <a class="btn-hover-bg btn btn-primary text-white py-3 px-5" href="#">Shop Now</a>
+                            <a href="{% url 'shop' %}" class="btn-hover-bg btn btn-primary text-white py-3 px-5">Shop Now</a>
                         </div>
                     </div>
                 </div>
@@ -61,6 +61,7 @@
     </div>
 </div>
 <!-- Carousel End -->
+
 
 <!-- About Start -->
         <div class="container-fluid about  py-5">
@@ -103,7 +104,7 @@
                                                     <p class="mb-4">Fosters and participate eco-friendly activities in local communities. We empower individuals to join and manage green initiatives like community cleanups, environmental fundraisers, and other sustainable activities. GreenHub also offers a curated selection of products made from recycled materials. Together, we aim to create a greener, more sustainable future for all.
                                                     </p>
                                                     <div class="d-flex align-items-center justify-content-start">
-                                                        <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Read More</a>
+                                                        <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href={% url 'about' %}>Read More</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -119,7 +120,7 @@
                                                     <p class="mb-4">Our mission is to inspire and enable individuals and communities to actively participate in sustainable practices and environmental stewardship. By providing a platform for organizing and promoting green initiatives, we aim to make eco-friendly actions accessible and impactful. We believe that small, collective efforts can lead to significant positive changes for our planet.
                                                     </p>
                                                     <div class="d-flex align-items-center justify-content-start">
-                                                        <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Read More</a>
+                                                        <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href={% url 'about' %}>Read More</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -135,7 +136,7 @@
                                                     <p class="mb-4">Our vision is to become the leading platform for community-driven environmental action, fostering a global network of eco-conscious individuals and organizations. We envision a world where sustainable practices are the norm, and everyone is engaged in protecting and preserving the environment for future generations.
                                                     </p>
                                                     <div class="d-flex align-items-center justify-content-start">
-                                                        <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Read More</a>
+                                                        <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href={% url 'about' %}>Read More</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -194,11 +195,11 @@
                 </div>
                 <p class="my-4">Get involved in local conservation projects to protect and preserve natural habitats and wildlife.</p>
             </div>
-            <div class="col-12">
-                <div class="d-flex align-items-center justify-content-center">
-                    <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Read More</a>
-                </div>
-            </div>
+{#            <div class="col-12">#}
+{#                <div class="d-flex align-items-center justify-content-center">#}
+{#                    <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Read More</a>#}
+{#                </div>#}
+{#            </div>#}
         </div>
     </div>
 </div>
@@ -226,7 +227,7 @@
             {% endfor %}
             <div class="col-12">
                 <div class="d-flex align-items-center justify-content-center">
-                    <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Join Us</a>
+                    <a href="{% url 'events' %}" class="btn-hover-bg btn btn-primary text-white py-2 px-4" >Join Us</a>
                 </div>
             </div>
         </div>
@@ -252,51 +253,14 @@
                     </div>
                     <h4 class="mb-4">{{ event.title }}</h4>
                     <p class="mb-4">{{ event.description }}</p>
-                    <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="#">Read More</a>
+                    <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href={{ event.link }}>View Event</a>
                 </div>
             </div>
             {% endfor %}
         </div>
     </div>
 </div>
-<!-- Events End -->
-{##}
-{#<!-- Blog Start -->#}
-{#<div class="container-fluid blog py-5 mb-5">#}
-{#    <div class="container py-5">#}
-{#        <div class="text-center mx-auto pb-5" style="max-width: 800px;">#}
-{#            <h5 class="text-uppercase text-primary">Latest News</h5>#}
-{#            <h1 class="mb-0">Stay updated with the latest in environmental action and eco-friendly initiatives!</h1>#}
-{#        </div>#}
-{#        <div class="row g-4">#}
-{#            {% for post in blog_posts %}#}
-{#            <div class="col-lg-6 col-xl-3">#}
-{#                <div class="blog-item">#}
-{#                    <div class="blog-img">#}
-{#                        <img src="{{ post.image.url }}" class="img-fluid w-100" alt="">#}
-{#                        <div class="blog-info">#}
-{#                            <span><i class="fa fa-clock"></i> {{ post.date }}</span>#}
-{#                            <div class="d-flex">#}
-{#                                <span class="me-3">{{ post.likes }} <i class="fa fa-heart"></i></span>#}
-{#                                <a href="#" class="text-white">{{ post.comments }} <i class="fa fa-comment"></i></a>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                        <div class="search-icon">#}
-{#                            <a href="{{ post.image.url }}" data-lightbox="Blog-{{ forloop.counter }}" class="my-auto"><i class="fas fa-search-plus btn-primary text-white p-3"></i></a>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="text-dark border p-4">#}
-{#                        <h4 class="mb-4">{{ post.title }}</h4>#}
-{#                        <p class="mb-4">{{ post.short_description }}</p>#}
-{#                        <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="{{ post.detail_url }}">Read More</a>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#            {% endfor %}#}
-{#        </div>#}
-{#    </div>#}
-{#</div>#}
-{#<!-- Blog End -->#}
+
 
 <!-- Volunteers Start -->
 <div class="container-fluid volunteer py-5 mt-5">
@@ -327,10 +291,12 @@
                 <p class="text-dark"><i class=" fa fa-check text-primary me-2"></i> Flexible commitment with no stringent requirements.</p>
                 <p class="text-dark mb-5"><i class=" fa fa-check text-primary me-2"></i> Completely free to join. We value your time, not your money.</p>
                 <a class="btn-hover-bg btn btn-primary text-white py-2 px-4" href="{% url 'add_volunteer' %}">Join Us</a>
+                
             </div>
         </div>
     </div>
 </div>
 <!-- Volunteers End -->
 {% endblock body%}
+
 

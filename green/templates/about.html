@@ -1,0 +1,140 @@
+{% extends 'base1.html' %}
+{% load static %}
+{% block body %}
+    <div class="container-fluid bg-breadcrumb">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            <h3 class="text-white display-3 mb-4">About Us</h3>
+            <p class="fs-5 text-white mb-4">Get to Know the People and Vision Driving Our Work!</p>
+        </div>
+    </div>
+    <div class="container-fluid about  py-5">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-xl-5">
+                    <div class="h-100">
+                        <img src="{% static 'img/about-1.jpg' %}" class="img-fluid w-100 h-100" alt="Image">
+                    </div>
+                </div>
+                <div class="col-xl-7">
+                    <h5 class="text-uppercase text-primary">About Us</h5>
+                    <h1 class="mb-4">Our main goal is to protect environment</h1>
+                    <p>For years, the environment has slowly been decaying, slipping away from our grasp, little by
+                        little. A few noticed, some didn't. Now is the time for urgent review. Global surface
+                        temperature has been measured since 1880 at a network of ground-based and
+                        ocean-based sites. Over the last century, the average surface temperature of the Earth has
+                        increased by about 1°C. The eleven warmest years this century have all occurred since 1980, with
+                        2016 the warmest on record.The coastal regions are getting warmer in summers and colder in
+                        winters, as the years pass by.
+                        The average temperature margin between summers and winters is increasing everywhere. Hundreds of
+                        people are getting sick due to the sudden weather change brought about by global warming. The
+                        earth is slowly dying and we need to save it, now.</p>
+                    <div class="tab-class bg-secondary p-4">
+                        <ul class="nav d-flex mb-2">
+                            <li class="nav-item mb-3">
+                                <a class="d-flex py-2 text-center bg-white active" data-bs-toggle="pill" href="#tab-1">
+                                    <span class="text-dark" style="width: 150px;">Beach Cleaning</span>
+                                </a>
+                            </li>
+                            <li class="nav-item mb-3">
+                                <a class="d-flex py-2 mx-3 text-center bg-white" data-bs-toggle="pill" href="#tab-2">
+                                    <span class="text-dark" style="width: 150px;">Tree Plantation</span>
+                                </a>
+                            </li>
+                            <li class="nav-item mb-3">
+                                <a class="d-flex py-2 text-center bg-white" data-bs-toggle="pill" href="#tab-3">
+                                    <span class="text-dark" style="width: 150px;">CSR activities</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="tab-1" class="tab-pane fade show p-0 active">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="d-flex">
+                                            <div class="text-start my-auto">
+                                                <!-- <h5 class="text-uppercase mb-3">Lorem Ipsum 1</h5> -->
+                                                <p>We organize beach cleaning drives to remove plastic and other waste
+                                                    materials from beaches, helping to preserve marine life and maintain
+                                                    clean and beautiful coastal areas. Our beach cleaning activities
+                                                    focus on:</p>
+                                                <ul>
+                                                    <li>Removing plastic waste, which is harmful to marine animals.</li>
+                                                    <li>Educating the public about the importance of keeping beaches
+                                                        clean.
+                                                    </li>
+                                                    <li>Working with local communities to create sustainable waste
+                                                        management solutions.
+                                                    </li>
+                                                    <li>Partnering with environmental organizations to amplify our
+                                                        efforts.
+                                                    </li>
+                                                </ul>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="tab-2" class="tab-pane fade show p-0">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="d-flex">
+                                            <div class="text-start my-auto">
+                                                <!-- <h5 class="text-uppercase mb-3">Lorem Ipsum 2</h5> -->
+                                                <p>We conduct tree plantation campaigns in deforested areas to restore
+                                                    natural habitats, increase green cover, and combat climate change by
+                                                    enhancing carbon sequestration. Our tree plantation efforts
+                                                    include:</p>
+                                                <ul>
+                                                    <li>Identifying areas that need reforestation.</li>
+                                                    <li>Collaborating with local authorities to secure land and
+                                                        resources.
+                                                    </li>
+                                                    <li>Organizing community planting events to engage local
+                                                        residents.
+                                                    </li>
+                                                    <li>Ensuring the survival of planted trees through regular
+                                                        monitoring and maintenance.
+                                                    </li>
+                                                </ul>
+                                         
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="tab-3" class="tab-pane fade show p-0">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="d-flex">
+                                            <div class="text-start my-auto">
+                                                <!-- <h5 class="text-uppercase mb-3">Vision</h5> -->
+                                                <p>We engage in various Corporate Social Responsibility (CSR) activities
+                                                    aimed at improving community health, education, and overall
+                                                    well-being, aligning with our mission to create a sustainable
+                                                    future. Our CSR activities focus on:</p>
+                                                <ul>
+                                                    <li>Providing educational resources and support to underserved
+                                                        communities.
+                                                    </li>
+                                                    <li>Organizing health camps and awareness programs.</li>
+                                                    <li>Supporting local businesses through skill development
+                                                        programs.
+                                                    </li>
+                                                    <li>Promoting environmental awareness and sustainable practices.
+                                                    </li>
+                                                </ul>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock body %}

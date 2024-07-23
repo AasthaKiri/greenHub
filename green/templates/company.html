@@ -1,0 +1,34 @@
+{% extends 'base1.html' %}
+{% block body %}
+        <div class="container-fluid bg-breadcrumb">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            <h3 class="text-white display-3 mb-4">Companies</h3>
+            <p class="fs-5 text-white mb-4">Uncover the Top Firms Making a Difference with Their Commitment to Sustainable and Environmentally-Conscious Practices</p>
+
+        </div>
+    </div>
+
+    <div class="container-fluid volunteer py-5">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-8 mx-auto">
+                <div class="row g-4">
+                    <!-- Volunteer 1 -->
+                    {% for company in companies %}
+                    <div class="col-12 volunteer-item mb-4 d-flex bg-light align-items-center" style="padding: 15px; background-color: #f8f9fa; border-radius: 10px;">
+                        <div class="volunteer-img me-3" style="flex: 0 0 auto; max-width: 150px; margin-right: 20px;">
+                            <img src="{{ company.image.url }}" alt="{{ company.name }}" style="width: 100%; border-radius: 50%;">
+                        </div>
+                        <div class="volunteer-title p-3" style="flex: 1 1 auto;">
+                            <h5 class="mb-2 text-dark">{{ company.name }}</h5>
+                            <p class="mb-0 text-dark">{{ company.description }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

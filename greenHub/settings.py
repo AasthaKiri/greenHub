@@ -12,7 +12,12 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+import ssl
 
+
+
+# Disable SSL certificate verification
+ssl._create_default_https_context = ssl._create_unverified_context
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -38,6 +43,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'green.apps.GreenConfig',
 ]
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Store session data in the database
+SESSION_COOKIE_AGE = 1209600  # 2 weeks
+SESSION_COOKIE_NAME = 'sessionid'
+SESSION_COOKIE_SECURE = False  # Set to True if using HTTPS
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+SESSION_COOKIE_DOMAIN = None
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -129,3 +141,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+# Email settings for password reset
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'jay0112varma@gmail.com'  # Replace with your email
+EMAIL_HOST_PASSWORD = 'clvl btzo kiud mtno'  # Replace with your email password
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

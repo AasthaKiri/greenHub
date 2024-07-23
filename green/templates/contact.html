@@ -1,0 +1,37 @@
+{% extends 'base1.html' %}
+{% block body %}
+        <div class="container-fluid bg-breadcrumb">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            <h3 class="text-white display-3 mb-4">Connect with Us</h3>
+            <p class="fs-5 text-white mb-4">Find the Best Way to Reach Out for Support, Information, or Partnership</p>
+
+        </div>
+    </div>
+
+<div class="container py-5">
+    <h2 class="mb-4">Contact GreenHub</h2>
+    <form method="post" enctype="multipart/form-data" class="border p-4 rounded bg-light">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="id_name" class="form-label">Name</label>
+            {{ form.name }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_role" class="form-label">Email</label>
+            {{ form.email }}
+        </div>
+
+        
+
+        <div class="mb-3">
+            <label for="id_bio" class="form-label">Message</label>
+            {{ form.message }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+</div>
+
+{% endblock body %}

@@ -45,9 +45,8 @@
             <div class="row align-items-center justify-content-center">
                 <div class="col-md-8">
                     <div class="topbar-info d-flex flex-wrap">
-                        <a href="#" class="text-light me-4"><i class="fas fa-envelope text-white me-2"></i>greenhub@gmail.com</a>
-                        <a href="#" class="text-light"><i
-                                class="fas fa-phone-alt text-white me-2"></i>+1(226)975-8949</a>
+                        <a href="#" class="text-light me-4"><i class="fas fa-envelope text-white me-2"></i>Welcome {{ request.user.username }}</a>
+                        
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -72,9 +71,10 @@
             <div class="collapse navbar-collapse bg-light" id="navbarCollapse">
                 <div class="navbar-nav ms-auto">
                     <a href={% url 'index' %} class="nav-item nav-link active">Home</a>
-                    <a href="index.html" class="nav-item nav-link">About</a>
+                    <a href={% url 'about' %} class="nav-item nav-link">About</a>
                     <a href={% url 'shop' %} class="nav-item nav-link">Shop</a>
                     <a href={% url 'events' %} class="nav-item nav-link">Events</a>
+                    <a href={% url 'company' %} class="nav-item nav-link">Company</a>
                     <a href={% url 'add_volunteer' %} class="nav-item nav-link">Volunteers</a>
 
                     {#                    <div class="nav-item dropdown">#}
@@ -85,14 +85,20 @@
                     {#                            <a href="index.html" class="dropdown-item">Donation</a>#}
                     {#                        </div>#}
                     {#                    </div>#}
-                    <a href="index.html" class="nav-item nav-link">Contact</a>
+                    <a href={% url 'contact' %} class="nav-item nav-link">Contact</a>
                     <a href={% url 'view_favorites' %} class="nav-item nav-link"><i class="fa fa-heart"></i></a>
+                    {% if request.user.is_anonymous %}
+                        <a href="{% url 'login' %}" class="nav-item nav-link btn btn-primary text-white me-3">Login</a>
+                    {% else %}
+                        <a href="{% url 'logout' %}"
+                           class="nav-item nav-link btn btn-primary text-white me-3">Logout</a>
+                    {% endif %}
 
 
                 </div>
-                <div class="d-flex align-items-center flex-nowrap pt-xl-0" style="margin-left: 15px;">
-                    <a href="" class="btn-hover-bg btn btn-primary text-white py-2 px-4 me-3">Login</a>
-                </div>
+                {#                <div class="d-flex align-items-center flex-nowrap pt-xl-0" style="margin-left: 15px;">#}
+                {#                    <a href={% url 'view_favorites' %} class="btn-hover-bg btn btn-primary text-white py-2 px-4 me-3">Login</a>#}
+                {#                </div>#}
             </div>
         </nav>
     </div>
@@ -130,21 +136,19 @@
                     <h4 class="mb-4 text-white">Our Services</h4>
                     <a href=""><i class="fas fa-angle-right me-2"></i> Event Listings</a>
                     <a href=""><i class="fas fa-angle-right me-2"></i> Volunteer Opportunities</a>
-                    <a href=""><i class="fas fa-angle-right me-2"></i> Sustainability Resources</a>
+                    <a href=""><i class="fas fa-angle-right me-2"></i> Companies</a>
                     <a href=""><i class="fas fa-angle-right me-2"></i> Green Products</a>
-                    <a href=""><i class="fas fa-angle-right me-2"></i> Community Forums</a>
-                    <a href=""><i class="fas fa-angle-right me-2"></i> Educational Workshops</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-6 col-xl-3">
                 <div class="footer-item d-flex flex-column">
-                    <h4 class="mb-4 text-white">Top Volunteers</h4>
-                    <a href=""><i class="fas fa-angle-right me-2"></i> Karen Dawson</a>
-                    <a href=""><i class="fas fa-angle-right me-2"></i> Jack Simmons</a>
-                    <a href=""><i class="fas fa-angle-right me-2"></i> Michael Linden</a>
-                    <a href=""><i class="fas fa-angle-right me-2"></i> Simon Green</a>
-                    <a href=""><i class="fas fa-angle-right me-2"></i> Natalie Channing</a>
-                    <a href=""><i class="fas fa-angle-right me-2"></i> Caroline Gerwig</a>
+                    <h4 class="mb-4 text-white">Volunteers</h4>
+                    {% for volunteer in volunteers %}
+                        <a href="">
+                            <i class="fas fa-angle-right me-2"></i> {{ volunteer.name }}
+                        </a>
+                    {% endfor %}
+
                 </div>
             </div>
             <div class="col-md-6 col-lg-6 col-xl-3">
