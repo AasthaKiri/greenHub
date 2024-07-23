@@ -1,9 +1,11 @@
 # mycompany/views.py
 from django.shortcuts import render, redirect
 from mycompany.forms import ContactForm
+from .models import *
 
 
 def about_us(request):
+    companies = Company.objects.all()
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -12,7 +14,7 @@ def about_us(request):
     else:
         form = ContactForm()
 
-    return render(request, 'mycompany/about_us.html', {'form': form})
+    return render(request, 'mycompany/about_us.html', {'form': form, 'companies': companies})
 
 def success(request):
     return render(request, 'mycompany/success.html')
