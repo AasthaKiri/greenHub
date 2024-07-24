@@ -1,14 +1,9 @@
 from django.db.models import Q
-from django.shortcuts import render, redirect
-from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.models import User
-from django.contrib.auth import login
 from django.shortcuts import render, HttpResponse, redirect
-
 from django.views.decorators.http import require_POST
 from django.shortcuts import render, redirect, get_object_or_404
 # from .models import Product, Category, Favorite
-from .models import Event, Volunteer, Achievement, BlogPost, Product, Category, Favorite, Company
+from .models import Event, Volunteer, Achievement, Product, Category, Favorite, Company
 from .forms import VolunteerForm, NewsletterSubscriptionForm, ContactForm
 from django.http import JsonResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -22,23 +17,58 @@ from django.utils.encoding import force_str, force_bytes
 from django.template.loader import render_to_string
 from django.contrib import messages
 from django.core.mail import EmailMessage
+from django.core.exceptions import ObjectDoesNotExist
 import certifi
 import smtplib
 import ssl
 
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes, force_str
+from django.core.mail import send_mail
+from django.conf import settings
+from django.contrib import messages
+from django.shortcuts import render, redirect
+from django.template.loader import render_to_string
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponse
+import logging
+
+
+
+# def home(request):
+#     events_list = Event.objects.all().order_by('date')
+#     volunteers = Volunteer.objects.all()[:4]  # Fetching some volunteers
+#     achievements = Achievement.objects.all()
+#
+#     context = {
+#         'events': events_list,
+#         'volunteers': volunteers,
+#         'achievements': achievements,
+#     }
+#     return render(request, 'index.html', context)
+#
 
 def home(request):
+    # Fetching events, volunteers, and achievements
     events_list = Event.objects.all().order_by('date')
     volunteers = Volunteer.objects.all()[:4]  # Fetching some volunteers
     achievements = Achievement.objects.all()
-    blog_posts = BlogPost.objects.all()
+
+    # Get the visit count from the session, or initialize it to 0 if it doesn't exist
+    visit_count = request.session.get('visit_count', 0)
+    visit_count += 1  # Increment the visit count
+    request.session['visit_count'] = visit_count  # Save the updated visit count in the session
 
     context = {
         'events': events_list,
         'volunteers': volunteers,
         'achievements': achievements,
-        'blog_posts': blog_posts,
+        'visit_count': visit_count,  # Pass the visit count to the template
     }
+
     return render(request, 'index.html', context)
 
 
@@ -46,15 +76,23 @@ def events(request):
     search_query = request.GET.get('q', '')
     sort_by = request.GET.get('sort', 'date')
 
-    print(f"Search query: {search_query}, Sort by: {sort_by}")  # Debugging
+    # Get the current user's visit history from the session
+    visit_history = request.session.get('event_visit_history', [])
+
+    # Add the current search query to the visit history if it's not already present
+    if search_query and search_query not in visit_history:
+        visit_history.append(search_query)
+        request.session['event_visit_history'] = visit_history
 
     events_list = Event.objects.all()
 
+    # Filter events based on the search query
     if search_query:
         events_list = events_list.filter(
             Q(title__icontains=search_query) | Q(description__icontains=search_query)
         )
 
+    # Sort events based on the selected sorting option
     if sort_by == 'title':
         events_list = events_list.order_by('title')
     elif sort_by == 'location':
@@ -72,11 +110,19 @@ def events(request):
     except EmptyPage:
         events_p = event_paginator.page(event_paginator.num_pages)
 
+    volunteers = Volunteer.objects.all()
+    # Provide suggestions based on the visit history
+    suggestions = [search for search in visit_history if search.lower().startswith(search_query.lower())]
+
     context = {
         'events': events_p,
         'search_query': search_query,
         'sort_by': sort_by,
+        'visit_history': visit_history,
+        'suggestions': suggestions,
+        'volunteers': volunteers
     }
+
     return render(request, 'events.html', context)
 
 
@@ -96,13 +142,17 @@ def newsletter_signup(request):
             return JsonResponse({'message': 'Invalid email address.'}, status=400)
     return JsonResponse({'message': 'Invalid request.'}, status=400)
 
+
 @login_required(login_url='login')
 def add_volunteer(request):
     if request.method == 'POST':
         form = VolunteerForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            messages.success(request, 'You have successfully registered as a volunteer!')
             return redirect('add_volunteer')
+        else:
+            messages.error(request, 'There was an error in registering. Please try again.')
     else:
         form = VolunteerForm()
     volunteers = Volunteer.objects.all()
@@ -141,7 +191,14 @@ def shop(request):
     except EmptyPage:
         products = paginator.page(paginator.num_pages)
 
-    favorite_products = Favorite.objects.get(holder=request.user)
+    favorite_products = []
+    if request.user.is_authenticated:
+        try:
+            favorite_products = Favorite.objects.get(holder=request.user).product.all()
+        except Favorite.DoesNotExist:
+            favorite_products = []
+
+    #favorite_products = Favorite.objects.get(holder=request.user)
     volunteers = Volunteer.objects.all()
     context = {
         'products': products,
@@ -149,7 +206,8 @@ def shop(request):
         'selected_category_id': selected_category_id,
         'sort_option': sort_option,
         'query': query,
-        'fav_products': favorite_products.product.all(),
+        'fav_products': favorite_products,
+        #'fav_products': favorite_products.product.all(),
         'volunteers': volunteers
 
     }
@@ -157,21 +215,14 @@ def shop(request):
     return render(request, 'shop.html', context)
 
 
-
 @login_required(login_url='login')
 def fav_product_sort(request):
-    # query = request.GET.get('search', '')
     sort_option = request.GET.get('sort', 'name_asc')
     favorites = Favorite.objects.get(holder=request.user)
 
-    # if query:
-    #     favorite_products = favorites.product.filter(product__name__icontains=query)
-    # else:
-    #     favorite_products = favorites.product.all()
-
     if sort_option == 'name_asc':
         favorite_products = favorites.product.order_by('name')
-    else :
+    else:
         favorite_products = favorites.product.order_by('-name')
 
     paginator = Paginator(favorite_products, 9)  # Show 9 products per page
@@ -224,8 +275,6 @@ def product_search(request):
     return render(request, 'shop.html', context)
 
 
-
-
 @login_required(login_url='login')
 def fav_product_search(request):
     query = request.GET.get('search', '')
@@ -242,12 +291,6 @@ def fav_product_search(request):
     }
     return render(request, 'fav.html', context)
 
-# @login_required(login_url='login')
-# def add_to_favorites(request, product_id):
-#     product = get_object_or_404(Product, id=product_id)
-#     if not Favorite.objects.filter(product=product).exists():
-#         Favorite.objects.create(product=product)
-#     return redirect('shop')  # Assuming 'shop' is the name of your product listing page
 
 @login_required(login_url='login')
 def view_favorites(request):
@@ -255,24 +298,22 @@ def view_favorites(request):
     selected_category_id = request.GET.get('category', None)
     query = request.GET.get('search', '')
 
-    # Get all favorite products
+    # Get all favorite products for the current user
     try:
         favorites = Favorite.objects.get(holder=request.user)
-    except:
-        favorites = Favorite()
-        favorites.holder = request.user
+    except Favorite.DoesNotExist:
+        favorites = Favorite(holder=request.user)
         favorites.save()
     favorite_products = favorites.product.all()
+
     # Filter favorite products by category if a category is selected
     if selected_category_id:
         selected_category = get_object_or_404(Category, id=selected_category_id)
-        favorite_products = favorite_products.filter(product__category=selected_category)
+        favorite_products = favorite_products.filter(category=selected_category)
 
     # Filter favorite products by search query if provided
     if query:
-        favorite_products = favorite_products.filter(product__name__icontains=query)
-
-    # Extract the products from the favorite products queryset
+        favorite_products = favorite_products.filter(name__icontains=query)
 
     context = {
         'fav': favorite_products,
@@ -284,25 +325,26 @@ def view_favorites(request):
     return render(request, 'fav.html', context)
 
 
-
 @login_required(login_url='login')
-def add_to_favorites(request,product_id):
+def add_to_favorites(request, product_id):
     try:
-        favorites=Favorite.objects.get(holder=request.user)
+        favorites = Favorite.objects.get(holder=request.user)
     except:
-        favorites=Favorite()
-        favorites.holder=request.user
+        favorites = Favorite()
+        favorites.holder = request.user
         favorites.save()
     product = get_object_or_404(Product, id=product_id)
 
     if product in favorites.product.all():
-       messages.error(request,"Product is already in the cart!")
-       return redirect('view_favorites')
+        messages.error(request, "Product is already in the cart!")
+        return redirect('view_favorites')
 
     else:
         favorites.product.add(product_id)
         favorites.save()
         return redirect('view_favorites')
+
+
 @login_required(login_url='login')
 def del_from_faves(request, product_id):
     favorites = Favorite.objects.get(holder=request.user)
@@ -337,7 +379,6 @@ def SignupPage(request):
 
     return render(request, 'signup.html')
 
-
 def LoginPage(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -345,13 +386,11 @@ def LoginPage(request):
         user = authenticate(request, username=username, password=pass1)
         if user is not None:
             login(request, user)
-            # request.session['xyz']=request.user.first_name
             return redirect('index')
         else:
             return HttpResponse("Username or Password is incorrect!!!")
 
     return render(request, 'login.html')
-
 
 @login_required(login_url='login')
 def LogoutPage(request):
@@ -409,7 +448,6 @@ def password_reset_request(request):
 def password_reset_done(request):
     return render(request, 'password_reset_done.html')
 
-
 def password_reset_confirm(request, uidb64, token):
     try:
         uid = force_str(urlsafe_base64_decode(uidb64))
@@ -437,10 +475,8 @@ def password_reset_confirm(request, uidb64, token):
         messages.error(request, 'An error occurred. Please try again.')
         return redirect('password_reset_request')
 
-
 def password_reset_complete(request):
     return render(request, 'password_reset_complete.html')
-
 
 def about_us(request):
     volunteers = Volunteer.objects.all()
@@ -460,7 +496,10 @@ def contact_us(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Thank you for contacting us! Your message has been sent successfully!')
             return redirect('contact')
+        else:
+            messages.error(request, 'There was an error sending your message. Please try again.')
     else:
         form = ContactForm()
     volunteers = Volunteer.objects.all()

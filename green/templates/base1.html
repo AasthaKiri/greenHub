@@ -45,17 +45,18 @@
             <div class="row align-items-center justify-content-center">
                 <div class="col-md-8">
                     <div class="topbar-info d-flex flex-wrap">
-                        <a href="#" class="text-light me-4"><i class="fas fa-envelope text-white me-2"></i>Welcome {{ request.user.username }}</a>
-                        
+                        <a href="#" class="text-light me-4"><i
+                                class="fas fa-user text-white me-2"></i>Welcome {{ request.user.username }}</a>
+                        {% block visit %}{% endblock visit %}
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="topbar-icon d-flex align-items-center justify-content-end">
-                        <a href="#" class="btn-square text-white me-2"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="btn-square text-white me-2"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="btn-square text-white me-2"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="btn-square text-white me-2"><i class="fab fa-pinterest"></i></a>
-                        <a href="#" class="btn-square text-white me-0"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.facebook.com/" class="btn-square text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com" class="btn-square text-white me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="https://instagram.com" class="btn-square text-white me-2"><i class="fab fa-instagram"></i></a>
+{#                        <a href="" class="btn-square text-white me-2"><i class="fab fa-pinterest"></i></a>#}
+                        <a href="https://ca.linkedin.com/" class="btn-square text-white me-0"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
             </div>
@@ -134,16 +135,16 @@
             <div class="col-md-6 col-lg-6 col-xl-3">
                 <div class="footer-item d-flex flex-column">
                     <h4 class="mb-4 text-white">Our Services</h4>
-                    <a href=""><i class="fas fa-angle-right me-2"></i> Event Listings</a>
-                    <a href=""><i class="fas fa-angle-right me-2"></i> Volunteer Opportunities</a>
-                    <a href=""><i class="fas fa-angle-right me-2"></i> Companies</a>
-                    <a href=""><i class="fas fa-angle-right me-2"></i> Green Products</a>
+                    <a href={% url 'events' %}><i class="fas fa-angle-right me-2"></i> Event Listings</a>
+                    <a href={% url 'add_volunteer' %}><i class="fas fa-angle-right me-2"></i> Volunteer Opportunities</a>
+                    <a href={% url 'company' %}><i class="fas fa-angle-right me-2"></i> Companies</a>
+                    <a href={% url 'shop' %}><i class="fas fa-angle-right me-2"></i> Green Products</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-6 col-xl-3">
                 <div class="footer-item d-flex flex-column">
                     <h4 class="mb-4 text-white">Volunteers</h4>
-                    {% for volunteer in volunteers %}
+                    {% for volunteer in volunteers|slice:4 %}
                         <a href="">
                             <i class="fas fa-angle-right me-2"></i> {{ volunteer.name }}
                         </a>

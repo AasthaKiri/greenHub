@@ -6,8 +6,8 @@
 <!-- Header Start -->
 <div class="container-fluid bg-breadcrumb">
     <div class="container text-center py-5" style="max-width: 900px;">
-        <h3 class="text-white display-3 mb-4">Step Up and Volunteer</h3>
-        <p class="fs-5 text-white mb-4">Become a Volunteer Today: Sign Up to Support Our Mission and Make a Difference</p>
+        <h3 class="text-white display-3 mb-4">Become a Volunteer Today</h3>
+        <p class="fs-5 text-white mb-4">Sign Up to Support Our Mission and Make a Difference</p>
 
     </div>
 </div>
@@ -16,6 +16,15 @@
 <!-- Form Section Start -->
 <div class="container py-5">
     <h2 class="mb-4">Register for Volunteering</h2>
+    <!-- Display messages -->
+    {% if messages %}
+        <div class="alert alert-success" role="alert">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endif %}
+
     <form method="post" enctype="multipart/form-data" class="border p-4 rounded bg-light">
         {% csrf_token %}
 

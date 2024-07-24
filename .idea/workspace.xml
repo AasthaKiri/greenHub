@@ -5,31 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c2f10b6-7b96-4374-8b8c-d769f934de8b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/green/migrations/0006_rename_bio_volunteer_reason_remove_volunteer_role_and_more.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/green/migrations/0007_remove_product_price_product_link.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/green/migrations/0008_event_link.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/green/migrations/0010_contact_favorite_holder_remove_favorite_product_and_more.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/green/templates/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/green/templates/password_reset_complete.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/green/templates/password_reset_confirm.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/green/templates/password_reset_done.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/green/templates/password_reset_email.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/green/templates/password_reset_request.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/green/templates/signup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/greenHub.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/greenHub.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/green/migrations/0011_delete_blogpost_remove_order_customer_and_more.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/green/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/green/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/green/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/green/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/green/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/green/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/green/templates/add_volunteer.html" beforeDir="false" afterPath="$PROJECT_DIR$/green/templates/add_volunteer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/green/templates/base1.html" beforeDir="false" afterPath="$PROJECT_DIR$/green/templates/base1.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/green/templates/contact.html" beforeDir="false" afterPath="$PROJECT_DIR$/green/templates/contact.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/green/templates/events.html" beforeDir="false" afterPath="$PROJECT_DIR$/green/templates/events.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/green/templates/fav.html" beforeDir="false" afterPath="$PROJECT_DIR$/green/templates/fav.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/green/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/green/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/green/templates/shop.html" beforeDir="false" afterPath="$PROJECT_DIR$/green/templates/shop.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/green/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/green/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/green/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/green/templates/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/green/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/green/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/greenHub/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/greenHub/settings.py" afterDir="false" />
     </list>
@@ -60,23 +47,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Django Server.greenHub.executor": "Run",
-    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "django.template.preview.state": "SHOW_EDITOR",
-    "git-widget-placeholder": "merge",
-    "last_opened_file_path": "D:/MAC WINDSOR/SEM3/internet/Lab/Lab3/mysiteS24",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Django Server.greenHub.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;django.template.preview.state&quot;: &quot;SHOW_EDITOR&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;merge&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/MAC WINDSOR/SEM3/internet/Lab/Lab3/mysiteS24&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="greenHub" type="Python.DjangoServer" factoryName="Django server">
       <module name="greenHub" />
@@ -123,7 +110,9 @@
       <updated>1721699729498</updated>
       <workItem from="1721699731481" duration="37000" />
       <workItem from="1721699770685" duration="11822000" />
-      <workItem from="1721711881398" duration="7746000" />
+      <workItem from="1721711881398" duration="10352000" />
+      <workItem from="1721735917948" duration="1769000" />
+      <workItem from="1721737721845" duration="14186000" />
     </task>
     <servers />
   </component>

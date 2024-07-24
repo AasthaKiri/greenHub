@@ -1,8 +1,10 @@
 {% extends 'base1.html' %}
 {% load static %}
+
 <!-- Carousel Start -->
+{#{% block visit %}<p class="text-white me-2">Site Visited {{ visit_count }}</p>{% endblock visit %}#}
 {% block body %}
-<div class="container-fluid carousel-header vh-100 px-0">
+    <div class="container-fluid carousel-header vh-100 px-0">
     <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
         <ol class="carousel-indicators">
             <li data-bs-target="#carouselId" data-bs-slide-to="0" class="active"></li>
