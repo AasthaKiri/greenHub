@@ -21,7 +21,7 @@
             <div class="row g-4 mb-4">
 
                 <div class="col-md-4">
-                    <form action={% block search %}"{% url 'product_search' %}" {% endblock search %} method="GET"
+                    <form action={% block search %}"{% url 'shop' %}" {% endblock search %} method="GET"
                           id="form">
                         <div class="input-group">
                             <input type="search" id="searchInput" class="form-control p-3" name="search"
@@ -36,7 +36,8 @@
                             <ul class="dropdown-menu" id="suggetion_ul"
                                 style="display: none; position: absolute; z-index: 1000;">
                                 {% for suggestion in suggestions %}
-                                    <li><a href="{% url 'product_search' %}?search={{ suggestion }}"
+                                    <li>
+                                        <a href={% block sugg %}"{% url 'shop' %}?search={{ suggestion }}"{% endblock sugg %}
                                            class="dropdown-item">{{ suggestion }}</a></li>
                                 {% endfor %}
                             </ul>
@@ -112,7 +113,15 @@
                 {% endif %}
                 <div class="col-md-9">
                     {% block favBody %}{% endblock favBody %}
-
+                    {% if messages %}
+        <div>
+            {% for message in messages %}
+                <div class="alert alert-warning">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
                     <div class="row g-4">
                         {% for product in products %}
                             <div class="col-lg-4 col-md-6">
@@ -158,6 +167,8 @@
                                             
                                             
                                             
+                                            
+                                            
                                             {{ products.previous_page_number }}{% if selected_category_id %}&category={{ selected_category_id }}{% endif %}{% if sort_option %}&sort={{ sort_option }}{% endif %}"
                                        aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
@@ -183,6 +194,8 @@
                                             
                                             
                                             
+                                            
+                                            
                                             {{ i }}{% if selected_category_id %}&category={{ selected_category_id }}{% endif %}{% if sort_option %}&sort={{ sort_option }}{% endif %}">{{ i }}</a>
                                     </li>
                                 {% endif %}
@@ -195,6 +208,8 @@
 
 
 
+                                            
+                                            
                                             
                                             
                                             

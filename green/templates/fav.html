@@ -4,8 +4,8 @@
 {% load static %}
 
 {% block sort %}"{% url 'fav_product_sort' %}"{% endblock sort %}
-{% block search %}"{% url 'fav_product_search' %}"{% endblock search %}
-<!-- Fruits Shop Start-->
+{% block search %}"{% url 'view_favorites' %}"{% endblock search %}
+{% block sugg %}"{% url 'view_favorites' %}?search={{ suggestion }}"{% endblock sugg %}<!-- Fruits Shop Start-->
 {% block favBody %}
 
     {% block mostFav %}{% endblock mostFav %}
